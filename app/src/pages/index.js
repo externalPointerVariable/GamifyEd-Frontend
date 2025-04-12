@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 // General Pages
+const Home  = lazy(() => import("./Home.jsx"));
 const About = lazy(() => import("./About.jsx"));
 const Login = lazy(() => import("./Login.jsx"));
 const Register = lazy(() => import("./Register.jsx"));
@@ -21,6 +22,12 @@ const ClassesLoadingPage = lazy(() =>
   import("./teacher/classes/ClassesLoadingPage.jsx")
 );
 const ClassesPage = lazy(() => import("./teacher/classes/ClassesPage.jsx"));
+const ClassDetailLoadingPage = lazy(() =>
+  import("./teacher/classes/id/ClassDetailLoadingPage.jsx")
+);
+const ClassDetailPage = lazy(() =>
+  import("./teacher/classes/id/ClassDetailPage.jsx")
+);
 
 // Student Pages
 const Calendar = lazy(() => import("./student/Calendar.jsx"));
@@ -47,6 +54,7 @@ const TestDetailsPage = lazy(() =>
 );
 
 export {
+  Home,
   About,
   Login,
   Register,
@@ -68,6 +76,8 @@ export {
   Quizzes,
   Achievements,
   ClassroomLoading,
+  ClassDetailLoadingPage,
+  ClassDetailPage,
   ClassroomPage,
   TestLoading,
   TestPage,

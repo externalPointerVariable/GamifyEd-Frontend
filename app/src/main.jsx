@@ -1,11 +1,13 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SuspenseWrapper } from "./components/index.js";
-import { RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import store from "./store/store.js";
 import {
+  Home,
   About,
   Login,
   Register,
@@ -23,8 +25,6 @@ import {
   ClassesPage,
   ClassDetailLoadingPage,
   ClassDetailPage,
-  AssignLoadingPage,
-  AssignPage,
   // Student
   Dashboard,
   Calendar,
@@ -50,7 +50,7 @@ const routes = createBrowserRouter([
     element: suspense(App),
     errorElement: suspense(Error),
     children: [
-      { path: "", element: suspense(Login) },
+      { path: "", element: suspense(Home) },
       { path: "about", element: suspense(About) },
       { path: "login", element: suspense(Login) },
       { path: "register", element: suspense(Register) },
@@ -104,8 +104,6 @@ const routes = createBrowserRouter([
         children: [
           { path: "", element: suspense(ClassDetailPage) },
           { path: "loading", element: suspense(ClassDetailLoadingPage) },
-          { path: "assign", element: suspense(AssignPage) },
-          { path: "assign/loading", element: suspense(AssignLoadingPage) },
         ],
       },
     ],

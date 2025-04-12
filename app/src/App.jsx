@@ -1,9 +1,14 @@
 import React from "react";
+import { Header, Footer } from "./components/index";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
   return (
     <>
-      <h1 class="text-3xl font-bold text-orange-500">Hello world!</h1>
+      <Header />
+      <Outlet />
+      <Footer />
     </>
   );
 }

@@ -15,18 +15,18 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setIsDark(!isDark)}
-      className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 transition-all dark:bg-amber-500"
+      className="relative flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500 dark:bg-indigo-200 transition-all"
       aria-label="Toggle theme"
     >
       <Sun
-        className={`h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`h-[1.5rem] w-[1.5rem] transition-all ${
           isDark ? "-rotate-90 scale-0" : "rotate-0 scale-100"
-        }`}
+        } text-white`}
       />
       <Moon
-        className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`absolute h-[1.5rem] w-[1.5rem] transition-all ${
           isDark ? "rotate-0 scale-100" : "rotate-90 scale-0"
-        }`}
+        } text-indigo-400`}
       />
     </button>
   );

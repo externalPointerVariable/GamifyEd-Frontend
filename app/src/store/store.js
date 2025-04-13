@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import authReducer from '../features/authSlice.js';
-import classroomsReducer from '../features/classroomsSlice.js';
-import testsReducer from '../features/testsSlice.js';
-import gamificationReducer from '../features/gamificationSlice.js';
-import userReducer from '../features/userSlice.js';
-import uiReducer from '../features/uiSlice.js';
+import authSlice from '../features/authSlice.js';
+import classroomsSlice from '../features/classroomsSlice.js';
+import testsSlice from '../features/testSlice.js';
+import gamificationSlice from '../features/gamificationSlice.js';
+import userSlice from '../features/userSlice.js';
+import themeSlice from '../features/themeSlice.js';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
-    classrooms: classroomsReducer,
-    tests: testsReducer,
-    gamification: gamificationReducer,
-    user: userReducer,
-    ui: uiReducer,
+    auth: authSlice,
+    classrooms: classroomsSlice,
+    tests: testsSlice,
+    theme: themeSlice,
+    gamification: gamificationSlice,
+    user: userSlice,
   },
 });
 

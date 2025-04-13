@@ -110,7 +110,8 @@ export default function Error() {
         </h1>
 
         <p className="text-lg mb-8 text-gray-400">
-          The educational adventure you're looking for seems to be in another castle.
+          The educational adventure you're looking for seems to be in another
+          castle.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

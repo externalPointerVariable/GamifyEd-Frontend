@@ -3,7 +3,7 @@ import ThreeBackground from "../components/ThreeBackground";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white items-center mx-auto">
       <ThreeBackground />
 
       <main className="relative z-10 flex-1">

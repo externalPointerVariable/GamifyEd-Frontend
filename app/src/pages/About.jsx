@@ -6,30 +6,34 @@ export default function About() {
   return (
     <div className="flex min-h-screen flex-col relative bg-background text-foreground dark:bg-black dark:text-white">
       <ThreeBackground />
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 text-center">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="space-y-4">
+        <section className="w-full py-16 md:py-24 lg:py-32 text-center">
+          <div className="container mx-auto px-6 sm:px-8">
+            <div className="space-y-6">
               <h1 className="text-3xl font-bold sm:text-5xl">
                 About GamifyEd-AI
               </h1>
-              <p className="max-w-3xl mx-auto text-muted-foreground md:text-xl dark:text-gray-400">
-                Revolutionizing education through AI-powered content and
-                gamified learning experiences
+              <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground dark:text-gray-400">
+                Revolutionizing education through AI-powered content and gamified learning experiences
               </p>
             </div>
 
-            <div className="mt-12 grid gap-8 lg:grid-cols-2 items-center">
-              <div className="space-y-4 text-left">
-                <div className="inline-block rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1 w-fit">
-                  <div className="rounded bg-white dark:bg-zinc-900 p-2">
+            <div className="mt-16 grid gap-10 lg:grid-cols-2 items-center">
+              <div className="space-y-6 text-left">
+              <div className="inline-block rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1">
+                  <div className="rounded-[5px] bg-white dark:bg-black p-2">
                     <svg
-                      className="h-10 w-10 text-primary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-10 w-10 text-primary"
                     >
                       <path d="M12 2L2 7l10 5 10-5-10-5z" />
                       <path d="M2 17l10 5 10-5" />
@@ -39,17 +43,15 @@ export default function About() {
                 </div>
                 <h2 className="text-2xl font-bold">Our Mission</h2>
                 <p className="text-muted-foreground dark:text-gray-400">
-                  At GamifyEd-AI, we believe that learning should be engaging,
-                  personalized, and effective. Our mission is to transform
-                  traditional education by combining the power of artificial
-                  intelligence with gamification principles to create a learning
-                  experience that motivates students and empowers teachers.
+                  At GamifyEd-AI, we believe that learning should be engaging, personalized, and effective. Our mission is to
+                  transform traditional education by combining the power of artificial intelligence with gamification principles
+                  to create a learning experience that motivates students and empowers teachers.
                 </p>
               </div>
-              <div className="rounded-lg overflow-hidden shadow-xl relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-30 group-hover:opacity-40 transition-opacity"></div>
+              <div className="rounded-xl overflow-hidden shadow-2xl relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-20 group-hover:opacity-30 transition-opacity"></div>
                 <img
-                  src="/placeholder.svg"
+                  src="https://images.unsplash.com/photo-1584697964190-72c32b6bfa1b?auto=format&fit=crop&w=1350&q=80"
                   alt="Students engaged in learning"
                   className="w-full aspect-video object-cover"
                 />
@@ -59,49 +61,38 @@ export default function About() {
         </section>
 
         {/* Features Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/50 dark:bg-zinc-800">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
-              Our Features
-            </h2>
-            <p className="max-w-3xl mx-auto mt-2 text-muted-foreground md:text-xl dark:text-gray-400">
+        <section className="w-full py-16 md:py-24 lg:py-32 bg-muted/50 dark:bg-zinc-900">
+          <div className="container mx-auto px-6 sm:px-8 text-center">
+            <h2 className="text-4xl font-bold sm:text-5xl">Our Features</h2>
+            <p className="max-w-3xl mx-auto mt-4 text-lg text-muted-foreground dark:text-gray-400">
               Discover how GamifyEd-AI transforms the learning experience
             </p>
 
-            <div className="grid gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3">
-              {features.map(
-                ({ id, title, description, icon, href, btnText, detail }) => (
-                  <div
-                    key={id}
-                    className="rounded-lg border border-primary/20 hover:border-primary/50 p-6 bg-white/80 dark:bg-zinc-900/80 backdrop-blur text-left"
-                  >
-                    <div className="h-40 flex items-center justify-center rounded bg-muted dark:bg-zinc-700 mb-4">
-                      {icon}
-                    </div>
-                    <h3 className="text-lg font-semibold">{title}</h3>
-                    <p className="text-sm text-muted-foreground dark:text-gray-400">
-                      {description}
-                    </p>
-                    <p className="text-sm text-muted-foreground dark:text-gray-400 mt-2">
-                      {detail}
-                    </p>
-                    <Link to={href}>
-                      <button className="w-full mt-4 border border-input text-sm px-4 py-2 rounded hover:bg-accent transition dark:hover:bg-fuchsia-500">
-                        {btnText}
-                      </button>
-                    </Link>
+            <div className="grid gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3">
+              {features.map(({ id, title, description, icon, href, btnText, detail }) => (
+                <div
+                  key={id}
+                  className="rounded-xl border border-zinc-200 dark:border-zinc-800 hover:shadow-lg transition-all p-6 bg-white/70 dark:bg-zinc-800/70 backdrop-blur-md text-left"
+                >
+                  <div className="rounded-full bg-indigo-100 dark:bg-indigo-900 p-4 w-fit mx-auto mb-4">
+                    {icon}
                   </div>
-                )
-              )}
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className="text-sm text-muted-foreground dark:text-gray-400">{description}</p>
+                  <p className="text-sm text-muted-foreground dark:text-gray-400 mt-2">{detail}</p>
+                  <Link to={href}>
+                    <button className="w-full mt-4 border border-input text-sm px-4 py-2 rounded hover:bg-indigo-600 hover:text-white transition dark:hover:bg-fuchsia-500">
+                      {btnText}
+                    </button>
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* For Teachers */}
-        <Section
-          title="For Teachers"
-          subtitle="Powerful tools to enhance your teaching and save time"
-        >
+        {/* Teachers Section */}
+        <Section title="For Teachers" subtitle="Powerful tools to enhance your teaching and save time">
           <div className="grid md:grid-cols-2 gap-6">
             <Card
               title="Classroom Management"
@@ -126,21 +117,17 @@ export default function About() {
               ]}
             />
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link to="/register">
-              <button className="px-6 py-2 rounded bg-primary hover:bg-fuchsia-500 text-white transition border-1">
+              <button className="px-6 py-2 rounded bg-indigo-600 hover:bg-fuchsia-500 text-white transition shadow-md hover:shadow-lg">
                 Get Started as a Teacher
               </button>
             </Link>
           </div>
         </Section>
 
-        {/* For Students */}
-        <Section
-          bg
-          title="For Students"
-          subtitle="A fun and engaging way to learn and grow"
-        >
+        {/* Students Section */}
+        <Section bg title="For Students" subtitle="A fun and engaging way to learn and grow">
           <div className="grid md:grid-cols-2 gap-6">
             <Card
               title="Personalized Learning"
@@ -165,9 +152,9 @@ export default function About() {
               ]}
             />
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link to="/register">
-              <button className="px-6 py-2 rounded bg-primary hover:bg-fuchsia-500 text-white transition border-1">
+              <button className="px-6 py-2 rounded bg-indigo-600 hover:bg-fuchsia-500 text-white transition shadow-md hover:shadow-lg">
                 Get Started as a Student
               </button>
             </Link>
@@ -175,22 +162,22 @@ export default function About() {
         </Section>
 
         {/* Final CTA */}
-        <section className="w-full py-12 md:py-24 lg:py-32 text-center">
-          <div className="container mx-auto px-4 md:px-6 space-y-4">
-            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+        <section className="w-full py-16 bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-pink-500/30 text-white text-center">
+          <div className="container mx-auto px-6 sm:px-8 space-y-6">
+            <h2 className="text-4xl sm:text-5xl font-bold">
               Ready to Transform Learning?
             </h2>
-            <p className="max-w-3xl mx-auto text-muted-foreground md:text-xl dark:text-gray-400">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl">
               Join thousands of teachers and students already using GamifyEd-AI
             </p>
-            <div className="flex flex-col gap-2 sm:flex-row justify-center mt-4">
+            <div className="flex flex-col gap-4 sm:flex-row justify-center">
               <Link to="/register">
-                <button className="px-6 py-2 rounded text-white hover:bg-indigo-600 bg-indigo-500 transition w-full">
+                <button className="px-6 py-2 rounded bg-white text-indigo-700 hover:bg-indigo-100 transition font-medium shadow-md">
                   Sign Up Now
                 </button>
               </Link>
               <Link to="/login">
-                <button className="px-6 py-2 rounded border border-input hover:bg-accent transition dark:hover:bg-zinc-700 w-full">
+                <button className="px-6 py-2 rounded border border-white text-white hover:bg-white hover:text-indigo-700 transition font-medium">
                   Log In
                 </button>
               </Link>
@@ -212,13 +199,7 @@ const features = [
     href: "/student/quizzes",
     btnText: "Try Quizzes",
     icon: (
-      <svg
-        className="h-10 w-10 text-muted-foreground dark:text-gray-300"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-      >
+      <svg className="h-8 w-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="10" />
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
         <path d="M12 17h.01" />
@@ -233,13 +214,7 @@ const features = [
     href: "/student/podcasts",
     btnText: "Explore Podcasts",
     icon: (
-      <svg
-        className="h-10 w-10 text-muted-foreground dark:text-gray-300"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-      >
+      <svg className="h-8 w-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path d="M18 8a6 6 0 0 0-9.33-5" />
         <path d="m10.93 7.9-1.87.36-.36-1.87" />
         <circle cx="12" cy="14" r="4" />
@@ -256,13 +231,7 @@ const features = [
     href: "/student/achievements",
     btnText: "View Achievements",
     icon: (
-      <svg
-        className="h-10 w-10 text-muted-foreground dark:text-gray-300"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-      >
+      <svg className="h-8 w-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.11" />
         <path d="M15 7a4 4 0 1 0-8 0" />
         <path d="M17 14h.352a3 3 0 1 0 0-6H17" />
@@ -273,14 +242,10 @@ const features = [
 ];
 
 const Section = ({ title, subtitle, children, bg = false }) => (
-  <section
-    className={`w-full py-12 md:py-24 lg:py-32 ${
-      bg ? "bg-muted/50 dark:bg-zinc-800" : ""
-    }`}
-  >
-    <div className="container mx-auto px-4 md:px-6 text-center">
-      <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">{title}</h2>
-      <p className="max-w-3xl mx-auto mt-2 text-muted-foreground md:text-xl dark:text-gray-400">
+  <section className={`w-full py-16 ${bg ? "bg-muted/50 dark:bg-zinc-900" : ""}`}>
+    <div className="container mx-auto px-6 sm:px-8 text-center">
+      <h2 className="text-4xl sm:text-5xl font-bold">{title}</h2>
+      <p className="max-w-3xl mx-auto mt-4 text-lg text-muted-foreground dark:text-gray-400">
         {subtitle}
       </p>
       <div className="mt-10">{children}</div>
@@ -289,7 +254,7 @@ const Section = ({ title, subtitle, children, bg = false }) => (
 );
 
 const Card = ({ title, description, list }) => (
-  <div className="rounded-lg border border-primary/20 hover:border-primary/50 p-6 bg-white/80 dark:bg-zinc-900/80 backdrop-blur text-left">
+  <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-800/70 backdrop-blur-md p-6 text-left shadow-md hover:shadow-lg transition">
     <h3 className="text-lg font-semibold">{title}</h3>
     <p className="text-sm text-muted-foreground dark:text-gray-400 mb-4">
       {description}

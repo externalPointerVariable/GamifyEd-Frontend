@@ -6,7 +6,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <ThreeBackground />
 
-      <main className="relative z-10 flex-1">
+      <main className="relative z-30 flex-1">
         {/* Hero Section */}
         <section className="w-full py-16 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -28,7 +28,7 @@ export default function Home() {
                     </button>
                   </Link>
                   <Link to="/about">
-                    <button className="btn-lg w-full transition-all duration-300 sm:w-auto border border-primary text-primary dark:text-white rounded py-2 px-6 bg-white dark:bg-black hover:bg-white hover:text-black">
+                    <button className="btn-lg w-full transition-all duration-300 sm:w-auto border border-primary text-primary dark:text-white rounded py-2 px-6 bg-white dark:bg-black hover:bg-fuchsia-500 hover:text-white">
                       Learn More
                     </button>
                   </Link>

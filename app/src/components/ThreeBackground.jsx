@@ -104,7 +104,7 @@ export default function ThreeBackground() {
   const isDark = theme === "dark";
 
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="absolute inset-0 overflow-hidden -z-10" aria-hidden="true">
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
         <BackgroundParticles isDark={isDark} />
       </Canvas>

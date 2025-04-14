@@ -1,19 +1,23 @@
+import { Link } from "react-router-dom";
 import ThreeBackground from "../components/ThreeBackground";
+import { Home } from "lucide-react";
 
-const Privacy = () => {
+export default function Terms() {
   return (
-    <div className="flex flex-col min-h-screen relative bg-white dark:bg-black text-gray-900 dark:text-gray-100">
+    <div className="flex min-h-screen flex-col relative bg-white dark:bg-black text-gray-900 dark:text-gray-100">
       <ThreeBackground />
 
-      <main className="flex-1 px-4 py-12 max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 bg-opacity-90 border border-gray-200 dark:border-gray-700 shadow-md rounded-lg p-6 backdrop-blur">
-          <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
+      <main className="flex-1 w-full px-4 py-12 md:px-8 max-w-4xl mx-auto">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg p-6 backdrop-blur bg-opacity-80">
+          <h1 className="text-3xl font-bold mb-2">
+            Privacy<span className="text-indigo-500"> Policy</span>
+          </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
             Last Updated: March 22, 2025
           </p>
 
-          <div className="space-y-6 prose dark:prose-invert max-w-none">
-            <h2 className="text-xl font-semibold">1. Introduction</h2>
+          <section className="prose dark:prose-invert max-w-none">
+            <h2  className="text-2xl font-semibold my-2">1. Introduction</h2>
             <p>
               At GamifyEd-AI, we take your privacy seriously. This Privacy
               Policy explains how we collect, use, disclose, and safeguard your
@@ -27,7 +31,7 @@ const Privacy = () => {
               Service.
             </p>
 
-            <h2 className="text-xl font-semibold">2. Information We Collect</h2>
+            <h2  className="text-2xl font-semibold my-2">2. Information We Collect</h2>
 
             <h3>2.1 Personal Information</h3>
             <p>
@@ -87,7 +91,7 @@ const Privacy = () => {
               those services.
             </p>
 
-            <h2 className="text-xl font-semibold">3. How We Use Your Information</h2>
+            <h2  className="text-2xl font-semibold my-2">3. How We Use Your Information</h2>
             <p>
               We may use the information we collect for various purposes,
               including to:
@@ -114,7 +118,7 @@ const Privacy = () => {
               <li>Comply with legal obligations</li>
             </ul>
 
-            <h2 className="text-xl font-semibold">4. How We Share Your Information</h2>
+            <h2  className="text-2xl font-semibold my-2">4. How We Share Your Information</h2>
             <p>We may share your information in the following situations:</p>
 
             <h3>4.1 With Your Consent</h3>
@@ -162,7 +166,7 @@ const Privacy = () => {
               litigation.
             </p>
 
-            <h2 className="text-xl font-semibold">5. Data Security</h2>
+            <h2 className="text-2xl font-semibold my-2">5. Data Security</h2>
             <p>
               We have implemented appropriate technical and organizational
               security measures designed to protect the security of any personal
@@ -172,7 +176,7 @@ const Privacy = () => {
               guaranteed to be 100% secure.
             </p>
 
-            <h2 className="text-xl font-semibold">6. Data Retention</h2>
+            <h2 className="text-2xl font-semibold my-2">6. Data Retention</h2>
             <p>
               We will only keep your personal information for as long as it is
               necessary for the purposes set out in this Privacy Policy, unless
@@ -184,7 +188,7 @@ const Privacy = () => {
               information.
             </p>
 
-            <h2 className="text-xl font-semibold">7. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold my-2">7. Children's Privacy</h2>
             <p>
               Our Service is intended for users who are at least 13 years of
               age. We do not knowingly collect personal information from
@@ -198,7 +202,7 @@ const Privacy = () => {
               compliance with applicable laws.
             </p>
 
-            <h2 className="text-xl font-semibold">8. Your Privacy Rights</h2>
+            <h2 className="text-2xl font-semibold my-2">8. Your Privacy Rights</h2>
             <p>
               Depending on your location, you may have certain rights regarding
               your personal information, including:
@@ -233,7 +237,7 @@ const Privacy = () => {
               information provided below.
             </p>
 
-            <h2 className="text-xl font-semibold">9. Third-Party Websites</h2>
+            <h2 className="text-2xl font-semibold my-2">9. Third-Party Websites</h2>
             <p>
               The Service may contain links to third-party websites and
               applications. We are not responsible for the privacy practices or
@@ -241,7 +245,7 @@ const Privacy = () => {
               the privacy policy of every website you visit.
             </p>
 
-            <h2 className="text-xl font-semibold">10. Analytics and Cookies</h2>
+            <h2 className="text-2xl font-semibold my-2">10. Analytics and Cookies</h2>
             <p>
               We may use cookies, web beacons, tracking pixels, and other
               tracking technologies to collect information about your browsing
@@ -255,7 +259,7 @@ const Privacy = () => {
               your use of the Service and report website trends.
             </p>
 
-            <h2 className="text-xl font-semibold">11. AI and Machine Learning</h2>
+            <h2 className="text-2xl font-semibold my-2">11. AI and Machine Learning</h2>
             <p>
               Our Service uses artificial intelligence and machine learning
               technologies to provide personalized educational content and
@@ -268,7 +272,7 @@ const Privacy = () => {
               information fairly and in a way that respects your privacy.
             </p>
 
-            <h2 className="text-xl font-semibold">12. Changes to This Privacy Policy</h2>
+            <h2 className="text-2xl font-semibold my-2">12. Changes to This Privacy Policy</h2>
             <p>
               We may update our Privacy Policy from time to time. We will notify
               you of any changes by posting the new Privacy Policy on this page
@@ -280,7 +284,7 @@ const Privacy = () => {
               are posted on this page.
             </p>
 
-            <h2 className="text-xl font-semibold">13. Contact Us</h2>
+            <h2 className="text-2xl font-semibold my-2">13. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please
               contact us at:
@@ -294,11 +298,19 @@ const Privacy = () => {
               <br />
               Email: privacy@gamifyed-ai.com
             </p>
+          </section>
+
+          <div className="flex justify-center mt-8">
+            <Link
+              to="/"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            >
+              <Home className="mr-2" />
+              Return to Home
+            </Link>
           </div>
         </div>
       </main>
     </div>
   );
-};
-
-export default Privacy;
+}

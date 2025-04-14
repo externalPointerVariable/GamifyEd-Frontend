@@ -23,12 +23,12 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row justify-center lg:justify-start">
                   <Link to="/register">
-                    <button className="btn-lg w-full sm:w-auto bg-primary text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2 px-6">
+                    <button className="btn-lg w-full sm:w-auto bg-primary text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2 px-6 transition-all duration-300">
                       Get Started
                     </button>
                   </Link>
                   <Link to="/about">
-                    <button className="btn-lg w-full sm:w-auto border border-primary text-primary dark:text-white rounded py-2 px-6 bg-white dark:bg-black">
+                    <button className="btn-lg w-full transition-all duration-300 sm:w-auto border border-primary text-primary dark:text-white rounded py-2 px-6 bg-white dark:bg-black hover:bg-white hover:text-black">
                       Learn More
                     </button>
                   </Link>
@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
                   <div className="px-6 pb-6">
                     <Link to={card.href}>
-                      <button className="w-full rounded-lg border border-primary text-primary dark:text-white hover:bg-primary hover:text-white transition-colors duration-300 py-2">
+                      <button className="w-full rounded-lg border border-primary text-primary dark:text-white hover:bg-primary hover:text-black transition-colors duration-300 py-2 hover:bg-white">
                         Learn More
                       </button>
                     </Link>

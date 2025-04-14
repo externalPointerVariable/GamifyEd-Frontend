@@ -162,7 +162,7 @@ export default function About() {
         </Section>
 
         {/* Final CTA */}
-        <section className="w-full py-16 bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-pink-500/30 text-white text-center">
+        <section className="w-full py-16 bg-gradient-to-r from-indigo-500/50 dark:from-indigo-500/30 via-purple-500/50 dark:via-purple-500/30 to-pink-500/30 text-white text-center">
           <div className="container mx-auto px-6 sm:px-8 space-y-6">
             <h2 className="text-4xl sm:text-5xl font-bold">
               Ready to Transform Learning?

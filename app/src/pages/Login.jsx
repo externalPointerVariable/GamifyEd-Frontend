@@ -1,6 +1,5 @@
-"use client";
-
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
@@ -17,8 +16,9 @@ import { Label } from "../components/ui/Label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/Radiogroup";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const router = useNavigate();
-  const [userType, setUserType] = useState("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,12 +26,12 @@ export default function Login() {
     e.preventDefault();
     // Redirect based on user type
     const redirectUrl =
-      userType === "student" ? "/student/dashboard" : "/teacher/dashboard";
+      user.role === "student" ? "/student/dashboard" : "/teacher/dashboard";
     router(redirectUrl);
   };
 
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+    <div className="container min-h-screen flex flex-col items-center justify-center">
       <Link
         href="/"
         className="absolute left-4 top-4 md:left-8 md:top-8 flex items-center gap-2 font-bold"
@@ -81,24 +81,6 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-            <div className="grid gap-2">
-              <Label>I am a:</Label>
-              <RadioGroup
-                defaultValue="student"
-                value={userType}
-                onValueChange={setUserType}
-                className="grid grid-cols-2 gap-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="student" id="student" />
-                  <Label htmlFor="student">Student</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="teacher" id="teacher" />
-                  <Label htmlFor="teacher">Teacher</Label>
-                </div>
-              </RadioGroup>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">

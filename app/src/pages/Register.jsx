@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Change this line to use useNavigate
+import React, { useEffect, useState } from "react";
+import { listCollege } from "../hooks";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import {
   Card,
@@ -15,15 +15,24 @@ import { Label } from "../components/ui/Label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/Radiogroup";
 
 export default function Register() {
-  const navigate = useNavigate(); // useNavigate hook from React Router
+  const navigate = useNavigate();
   const [userType, setUserType] = useState("student");
+  const [institute, setInstitute] = useState("");
+  const [listColleges, setListColleges] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    async function fetchColleges() {
+      const colleges = await listCollege();
+      setListColleges(colleges);
+    }
+    fetchColleges();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, you would register the user here
     const redirectUrl =
       userType === "student" ? "/student/dashboard" : "/teacher/dashboard";
     navigate(redirectUrl);
@@ -32,17 +41,14 @@ export default function Register() {
   return (
     <div className="container flex min-h-screen flex-col items-center justify-center">
       <Link
-        href="/"
+        to="/"
         className="absolute left-4 top-4 md:left-8 md:top-8 flex items-center gap-2 font-bold"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
           fill="none"
+          viewBox="0 0 24 24"
           stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
           className="h-6 w-6 text-primary"
         >
           <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -90,6 +96,23 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="institute">Institute</Label>
+              <select
+                id="institute"
+                className="border rounded-md px-3 py-2 w-sm"
+                value={institute}
+                onChange={(e) => setInstitute(e.target.value)}
+                required
+              >
+                <option value="">Select an institute</option>
+                {listColleges.map((college, idx) => (
+                  <option key={idx} value={college}>
+                    {college}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="grid gap-2">
               <Label>I am a:</Label>

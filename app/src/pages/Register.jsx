@@ -26,7 +26,7 @@ export default function Register() {
     // In a real app, you would register the user here
     const redirectUrl =
       userType === "student" ? "/student/dashboard" : "/teacher/dashboard";
-    navigate(redirectUrl); // Use navigate instead of router.push
+    navigate(redirectUrl);
   };
 
   return (

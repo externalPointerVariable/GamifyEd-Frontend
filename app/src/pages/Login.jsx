@@ -13,7 +13,7 @@ import {
 import { Input } from "../components/ui/Input";
 import { Label } from "../components/ui/Label";
 import { loginUser } from "../hooks"; // <-- Make sure loginUser is properly defined
-import { setUser } from "../features"
+import { setUser } from "../features/authSlice"; // <-- Adjust the import path as needed
 
 export default function Login() {
   const dispatch = useDispatch();

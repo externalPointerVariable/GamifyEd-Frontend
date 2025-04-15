@@ -6,31 +6,31 @@ const registerUser = async ({
   lastName,
   email,
   password,
-  userType,
-  institute,
+  userType, // this will be mapped to `role`
+  institute, // this will be mapped to `institution`
 }) => {
   try {
-    const response = await fetch(
-      `${config.backendEndpoint}/register`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          firstName,
-          lastName,
-          email,
-          password,
-          userType,
-          institute,
-        }),
-      }
-    );
+    const response = await fetch(`${config.backendEndpoint}/register/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        firstName,
+        lastName,
+        email,
+        password,
+        role: userType, // backend expects 'role'
+        institution: institute, // backend expects 'institution'
+      }),
+    });
 
     const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Registration failed");
+
+    if (!response.ok) {
+      throw new Error(data.message || "Registration failed");
+    }
 
     return data;
   } catch (error) {
@@ -39,21 +39,26 @@ const registerUser = async ({
   }
 };
 
-const loginUser = async ({ email, password }) => {
+export default registerUser;
+
+const loginUser = async ({ username, password }) => {
   try {
-    const response = await fetch("https://your-api-domain.com/api/auth/login", {
+    const response = await fetch(`${config.backendEndpoint}/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
+        username,
         password,
       }),
     });
 
     const data = await response.json();
-    if (!response.ok) throw new Error(data.message || "Login failed");
+
+    if (!response.ok) {
+      throw new Error(data.message || "Login failed");
+    }
 
     return data;
   } catch (error) {
@@ -61,3 +66,7 @@ const loginUser = async ({ email, password }) => {
     throw error;
   }
 };
+
+// const resetUserPassword
+
+export { registerUser, loginUser };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import {
   Card,
@@ -13,26 +12,37 @@ import {
 } from "../components/ui/Card";
 import { Input } from "../components/ui/Input";
 import { Label } from "../components/ui/Label";
+import { loginUser } from "../hooks"; // <-- Make sure loginUser is properly defined
+import { setUser } from "../features"
 
 export default function Login() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const router = useNavigate();
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Redirect based on user type
-    const redirectUrl =
-      user.role === "student" ? "/student/dashboard" : "/teacher/dashboard";
-    router(redirectUrl);
+
+    try {
+      const userData = await loginUser({ username, password });
+      dispatch(setUser(userData));
+
+      const redirectUrl =
+        userData.role === "student"
+          ? "/student/dashboard"
+          : "/teacher/dashboard";
+
+      navigate(redirectUrl);
+    } catch (error) {
+      alert("Login failed: " + error.message);
+    }
   };
 
   return (
     <div className="container min-h-screen flex flex-col items-center justify-center">
       <Link
-        href="/"
+        to="/"
         className="absolute left-4 top-4 md:left-8 md:top-8 flex items-center gap-2 font-bold"
       >
         <svg
@@ -61,13 +71,12 @@ export default function Login() {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="username"
+                placeholder="john_doe"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>

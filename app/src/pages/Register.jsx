@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { listCollege } from "../hooks";
+import { listCollege, registerUser } from "../hooks";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import {
@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "../components/ui/Radiogroup";
 
 export default function Register() {
   const navigate = useNavigate();
+
   const [userType, setUserType] = useState("student");
   const [institute, setInstitute] = useState("");
   const [listColleges, setListColleges] = useState([]);
@@ -33,11 +34,26 @@ export default function Register() {
     fetchColleges();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const redirectUrl =
-      userType === "student" ? "/student/dashboard" : "/teacher/dashboard";
-    navigate(redirectUrl);
+
+    try {
+      const res = await registerUser({
+        username,
+        firstName,
+        lastName,
+        email,
+        password,
+        userType,
+        institute,
+      });
+
+      console.log("Registration success:", res);
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error.message);
+      alert("Registration failed. Please check your input and try again.");
+    }
   };
 
   return (
@@ -59,6 +75,7 @@ export default function Register() {
         </svg>
         <span>GamifyEd-AI</span>
       </Link>
+
       <Card className="w-full max-w-md">
         <form onSubmit={handleSubmit}>
           <CardHeader className="space-y-1">
@@ -67,37 +84,41 @@ export default function Register() {
               Enter your information to create your GamifyEd-AI account
             </CardDescription>
           </CardHeader>
+
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Username</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
-                id="name"
+                id="username"
                 placeholder="John_Doe_934"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>
+
             <div className="grid gap-2">
-              <Label htmlFor="name">First Name</Label>
+              <Label htmlFor="firstName">First Name</Label>
               <Input
-                id="name"
+                id="firstName"
                 placeholder="John"
                 value={firstName}
                 onChange={(e) => setFirstname(e.target.value)}
                 required
               />
             </div>
+
             <div className="grid gap-2">
-              <Label htmlFor="name">Last Name</Label>
+              <Label htmlFor="lastName">Last Name</Label>
               <Input
-                id="name"
+                id="lastName"
                 placeholder="Doe"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </div>
+
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -109,6 +130,7 @@ export default function Register() {
                 required
               />
             </div>
+
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -119,6 +141,7 @@ export default function Register() {
                 required
               />
             </div>
+
             <div className="grid gap-2">
               <Label htmlFor="institute">Institute</Label>
               <select
@@ -136,6 +159,7 @@ export default function Register() {
                 ))}
               </select>
             </div>
+
             <div className="grid gap-2">
               <Label>I am a:</Label>
               <RadioGroup
@@ -155,6 +179,7 @@ export default function Register() {
               </RadioGroup>
             </div>
           </CardContent>
+
           <CardFooter className="flex flex-col">
             <Button className="w-full" type="submit">
               Create Account

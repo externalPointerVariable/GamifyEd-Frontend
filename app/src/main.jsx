@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SuspenseWrapper } from "./components/index.js";
 import { Provider } from "react-redux";
-import { RouterProvider, createBrowserRouter} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import store from "./store/store.js";
@@ -10,6 +10,8 @@ import {
   Home,
   About,
   Login,
+  PasswordReset,
+  PasswordResetConfirm,
   Register,
   Privacy,
   Terms,
@@ -56,6 +58,11 @@ const routes = createBrowserRouter([
       { path: "register", element: suspense(Register) },
       { path: "privacy", element: suspense(Privacy) },
       { path: "terms", element: suspense(Terms) },
+      { path: "password-reset", element: suspense(PasswordReset) },
+      {
+        path: "password-reset-confirm",
+        element: suspense(PasswordResetConfirm),
+      },
 
       // Student
       { path: "student/dashboard", element: suspense(Dashboard) },

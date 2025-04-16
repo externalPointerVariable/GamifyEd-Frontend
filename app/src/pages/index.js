@@ -1,9 +1,11 @@
 import { lazy } from "react";
 
 // General Pages
-const Home  = lazy(() => import("./Home.jsx"));
+const Home = lazy(() => import("./Home.jsx"));
 const About = lazy(() => import("./About.jsx"));
 const Login = lazy(() => import("./Login.jsx"));
+const PasswordReset = lazy(() => import("./PasswordReset.jsx"));
+const PasswordResetConfirm = lazy(() => import("./PasswordResetConfirm.jsx"));
 const Register = lazy(() => import("./Register.jsx"));
 const Privacy = lazy(() => import("./Privacy.jsx"));
 const Terms = lazy(() => import("./Terms.jsx"));
@@ -57,6 +59,8 @@ export {
   Home,
   About,
   Login,
+  PasswordReset,
+  PasswordResetConfirm,
   Register,
   Privacy,
   Terms,

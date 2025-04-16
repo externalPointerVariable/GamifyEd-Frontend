@@ -80,8 +80,17 @@ export default function Login() {
                 required
               />
             </div>
+
             <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Password</Label>
+                <Link
+                  to="/password-reset"
+                  className="text-xs text-indigo-600 hover:underline dark:text-indigo-400"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
               <Input
                 id="password"
                 type="password"
@@ -91,6 +100,7 @@ export default function Login() {
               />
             </div>
           </CardContent>
+
           <CardFooter className="flex flex-col">
             <Button className="w-full" type="submit">
               Login

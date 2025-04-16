@@ -111,7 +111,7 @@ function Scene({ color, isDark }) {
   );
 }
 
-export default function ThreeTrophy({
+export default function Trophies({
   size = 150,
   color = "#FFD700",
   className = "",

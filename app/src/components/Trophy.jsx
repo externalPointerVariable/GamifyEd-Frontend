@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Trophy Model Component
 function TrophyModel({ color = "#FFD700", isDark = false }) {
   const baseMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color(color),

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Link from "next/link";
-import { Button } from "../../../components/ui/Button ";
+import { Link } from "react-router-dom";
+import { Button } from "../../../components/ui/Button";
 import {
   Card,
   CardContent,
@@ -9,9 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/ui/Card";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../components/ui/Avatar";
 import {
-  Bell,
+  Avatar,
+  AvatarFallback,
+} from "../../../components/ui/Avatar";
+import {
   BookOpen,
   Calendar,
   LogOut,
@@ -26,7 +28,12 @@ import {
 } from "lucide-react";
 import ThreeBackground from "../../../components/ThreeBackground";
 import { Badge } from "../../../components/ui/Badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/Tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../components/ui/Tabs";
 import { Input } from "../../../components/ui/Input";
 import {
   Dialog,

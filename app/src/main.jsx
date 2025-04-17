@@ -65,8 +65,8 @@ const routes = createBrowserRouter([
       { path: "student/podcasts", element: suspense(Podcasts) },
       { path: "student/quizzes", element: suspense(Quizzes) },
       { path: "student/achievements", element: suspense(Achievements) },
-      { path: "student/classrooms/page", element: suspense(ClassroomPage) },
-      { path: "student/classrooms/test/page", element: suspense(TestPage) },
+      { path: "student/classrooms", element: suspense(ClassroomPage) },
+      { path: "student/classrooms/test", element: suspense(TestPage) },
       {
         path: "student/classrooms/test/details/page",
         element: suspense(TestDetailsPage),

@@ -1,17 +1,39 @@
-import { DialogFooter } from "../../../../components/ui/Dialog"
-import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import { Button } from "../../../../components/ui/Button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../../../components/ui/Card"
-import { Progress } from "../../../../components/ui/Progress"
-import { RadioGroup, RadioGroupItem } from "../../../../components/ui/Radiogroup"
-import { Label } from "../../../../components/ui/Label"
-import { AlertCircle, ArrowLeft, ArrowRight, CheckCircle, Clock, X } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../../../../components/ui/Dialog"
+import { DialogFooter } from "../../../../components/ui/Dialog";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button } from "../../../../components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../../components/ui/Card";
+import { Progress } from "../../../../components/ui/Progress";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "../../../../components/ui/Radiogroup";
+import { Label } from "../../../../components/ui/Label";
+import {
+  AlertCircle,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle,
+  Clock,
+  X,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "../../../../components/ui/Dialog";
 
 // Mock test data - in a real app, this would come from an API
 const testsData = {
-  "1": {
+  1: {
     id: 1,
     title: "Algebra Quiz",
     description: "Covers linear equations, polynomials, and factoring.",
@@ -49,10 +71,11 @@ const testsData = {
       },
     ],
   },
-  "2": {
+  2: {
     id: 2,
     title: "Chemistry Quiz",
-    description: "Covers chemical reactions, balancing equations, and molecular structures.",
+    description:
+      "Covers chemical reactions, balancing equations, and molecular structures.",
     timeLimit: 45, // minutes
     questions: [
       {
@@ -87,89 +110,93 @@ const testsData = {
       },
     ],
   },
-}
+};
 
 export default function TestPage() {
-  const params = useParams()
-  const router = useNavigate()
-  const classroomId = params.id
-  const testId = params.testId
-  const test = testsData[1]
+  const params = useParams();
+  const router = useNavigate();
+  const classroomId = params.id;
+  const testId = params.testId;
+  const test = testsData[testId];
 
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState(Array(test?.questions.length).fill(-1))
-  const [timeLeft, setTimeLeft] = useState(test?.timeLimit * 60 || 0) // in seconds
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showResults, setShowResults] = useState(false)
-  const [showExitConfirm, setShowExitConfirm] = useState(false)
-  const [score, setScore] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState(
+    Array(test?.questions.length).fill(-1)
+  );
+  const [timeLeft, setTimeLeft] = useState(test?.timeLimit * 60 || 0); // in seconds
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [score, setScore] = useState(0);
 
   // Format time remaining
   const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`
-  }
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
 
   // Handle timer
   useEffect(() => {
     if (!showResults && timeLeft > 0) {
       const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1)
-      }, 1000)
-      return () => clearTimeout(timer)
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
     } else if (timeLeft === 0 && !showResults) {
-      handleSubmitTest()
+      handleSubmitTest();
     }
-  }, [timeLeft, showResults])
+  }, [timeLeft, showResults]);
 
   // Handle answer selection
   const handleAnswerSelect = (answerIndex) => {
-    const newAnswers = [...answers]
-    newAnswers[currentQuestion] = answerIndex
-    setAnswers(newAnswers)
-  }
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = answerIndex;
+    setAnswers(newAnswers);
+  };
 
   // Navigate to next question
   const handleNextQuestion = () => {
     if (currentQuestion < test.questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
+      setCurrentQuestion(currentQuestion + 1);
     }
-  }
+  };
 
   // Navigate to previous question
   const handlePrevQuestion = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1)
+      setCurrentQuestion(currentQuestion - 1);
     }
-  }
+  };
 
   // Submit test
   const handleSubmitTest = () => {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Calculate score
-    let correctAnswers = 0
+    let correctAnswers = 0;
     answers.forEach((answer, index) => {
       if (answer === test.questions[index].correctAnswer) {
-        correctAnswers++
+        correctAnswers++;
       }
-    })
+    });
 
-    const finalScore = Math.round((correctAnswers / test.questions.length) * 100)
-    setScore(finalScore)
+    const finalScore = Math.round(
+      (correctAnswers / test.questions.length) * 100
+    );
+    setScore(finalScore);
 
     // Simulate API call
     setTimeout(() => {
-      setIsSubmitting(false)
-      setShowResults(true)
-    }, 1500)
-  }
+      setIsSubmitting(false);
+      setShowResults(true);
+    }, 1500);
+  };
 
   // Exit test
   const handleExitTest = () => {
-    router(`/student/classrooms/${classroomId}`)
-  }
+    router(`/student/classrooms/${classroomId}`);
+  };
 
   if (!test) {
     return (
@@ -179,7 +206,7 @@ export default function TestPage() {
           <a href={`/student/classrooms/${classroomId}`}>Back to Classroom</a>
         </Button>
       </div>
-    )
+    );
   }
 
   // Show results screen
@@ -205,8 +232,13 @@ export default function TestPage() {
 
               <h2 className="text-3xl font-bold mb-2">Your Score: {score}%</h2>
               <p className="text-muted-foreground mb-4">
-                You answered {answers.filter((a, i) => a === test.questions[i].correctAnswer).length} out of{" "}
-                {test.questions.length} questions correctly.
+                You answered{" "}
+                {
+                  answers.filter(
+                    (a, i) => a === test.questions[i].correctAnswer
+                  ).length
+                }{" "}
+                out of {test.questions.length} questions correctly.
               </p>
 
               <div className="w-full max-w-md mb-6">
@@ -218,10 +250,10 @@ export default function TestPage() {
                   {score >= 90
                     ? "Excellent work! You've mastered this material."
                     : score >= 70
-                      ? "Good job! You have a solid understanding of the material."
-                      : score >= 50
-                        ? "You're on the right track, but might need some review."
-                        : "You might need additional help with this material. Don't give up!"}
+                    ? "Good job! You have a solid understanding of the material."
+                    : score >= 50
+                    ? "You're on the right track, but might need some review."
+                    : "You might need additional help with this material. Don't give up!"}
                 </p>
               </div>
             </div>
@@ -236,7 +268,7 @@ export default function TestPage() {
           </CardFooter>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -247,7 +279,9 @@ export default function TestPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
           <DialogHeader className="relative">
             <DialogTitle>Exit Test?</DialogTitle>
-            <DialogDescription>Are you sure you want to exit? Your progress will be lost.</DialogDescription>
+            <DialogDescription>
+              Are you sure you want to exit? Your progress will be lost.
+            </DialogDescription>
           </DialogHeader>
           <DialogFooter className="relative">
             <Button variant="outline" onClick={() => setShowExitConfirm(false)}>
@@ -280,7 +314,11 @@ export default function TestPage() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1 bg-muted/50 px-3 py-1 rounded-full">
               <Clock className="h-4 w-4 text-muted-foreground" />
-              <span className={`text-sm font-medium ${timeLeft < 60 ? "text-destructive" : ""}`}>
+              <span
+                className={`text-sm font-medium ${
+                  timeLeft < 60 ? "text-destructive" : ""
+                }`}
+              >
                 {formatTime(timeLeft)}
               </span>
             </div>
@@ -298,20 +336,35 @@ export default function TestPage() {
         <Card className="backdrop-blur bg-background/80 border-primary/20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
           <CardHeader className="relative">
-            <CardTitle className="text-xl">Question {currentQuestion + 1}</CardTitle>
+            <CardTitle className="text-xl">
+              Question {currentQuestion + 1}
+            </CardTitle>
           </CardHeader>
           <CardContent className="relative space-y-6">
-            <div className="text-lg font-medium">{test.questions[currentQuestion].question}</div>
+            <div className="text-lg font-medium">
+              {test.questions[currentQuestion].question}
+            </div>
 
             <RadioGroup
               value={answers[currentQuestion]?.toString() || ""}
-              onValueChange={(value) => handleAnswerSelect(Number.parseInt(value))}
+              onValueChange={(value) =>
+                handleAnswerSelect(Number.parseInt(value))
+              }
               className="space-y-3"
             >
               {test.questions[currentQuestion].options.map((option, index) => (
-                <div key={index} className="flex items-center space-x-2 rounded-md border p-3 hover:bg-muted/50">
-                  <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                  <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
+                <div
+                  key={index}
+                  className="flex items-center space-x-2 rounded-md border p-3 hover:bg-muted/50"
+                >
+                  <RadioGroupItem
+                    value={index.toString()}
+                    id={`option-${index}`}
+                  />
+                  <Label
+                    htmlFor={`option-${index}`}
+                    className="flex-1 cursor-pointer"
+                  >
                     {option}
                   </Label>
                 </div>
@@ -319,7 +372,12 @@ export default function TestPage() {
             </RadioGroup>
           </CardContent>
           <CardFooter className="relative flex justify-between">
-            <Button onClick={handlePrevQuestion} disabled={currentQuestion === 0} variant="outline" className="gap-1">
+            <Button
+              onClick={handlePrevQuestion}
+              disabled={currentQuestion === 0}
+              variant="outline"
+              className="gap-1"
+            >
               <ArrowLeft className="h-4 w-4" /> Previous
             </Button>
 
@@ -333,7 +391,11 @@ export default function TestPage() {
                   {isSubmitting ? "Submitting..." : "Submit Test"}
                 </Button>
               ) : (
-                <Button onClick={handleNextQuestion} variant="outline" className="gap-1">
+                <Button
+                  onClick={handleNextQuestion}
+                  variant="outline"
+                  className="gap-1"
+                >
                   Next <ArrowRight className="h-4 w-4" />
                 </Button>
               )}
@@ -346,9 +408,17 @@ export default function TestPage() {
           {test.questions.map((_, index) => (
             <Button
               key={index}
-              variant={index === currentQuestion ? "default" : answers[index] !== -1 ? "outline" : "ghost"}
+              variant={
+                index === currentQuestion
+                  ? "default"
+                  : answers[index] !== -1
+                  ? "outline"
+                  : "ghost"
+              }
               className={`h-10 w-10 p-0 ${
-                answers[index] !== -1 && index !== currentQuestion ? "border-primary/30 bg-primary/10 text-primary" : ""
+                answers[index] !== -1 && index !== currentQuestion
+                  ? "border-primary/30 bg-primary/10 text-primary"
+                  : ""
               }`}
               onClick={() => setCurrentQuestion(index)}
             >
@@ -358,5 +428,5 @@ export default function TestPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

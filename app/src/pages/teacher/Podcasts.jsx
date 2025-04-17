@@ -1,7 +1,13 @@
-import {Link} from "react-router-dom"
-import { Button } from "../../components/ui/Button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/Card"
-import { Badge } from "../../components/ui/Badge"
+import { Link } from "react-router-dom";
+import { Button } from "../../components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/Card";
+import { Badge } from "../../components/ui/Badge";
 import {
   BookOpen,
   Calendar,
@@ -15,15 +21,21 @@ import {
   Pause,
   Clock,
   MoreHorizontal,
-} from "lucide-react"
-import ThreeBackground from "../../components/ThreeBackground"
-import { Input } from "../../components/ui/Input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "../../components/ui/Textarea"
-import { Label } from "../../components/ui/Label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/Select"
-import { Slider } from "@/components/ui/slider"
-import { useState } from "react"
+} from "lucide-react";
+import ThreeBackground from "../../components/ThreeBackground";
+import { Input } from "../../components/ui/Input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/Tabs";
+import { Textarea } from "../../components/ui/Textarea";
+import { Label } from "../../components/ui/Label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/Select";
+import { Slider } from "../../components/ui/Slider";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -32,16 +44,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../components/ui/Dialog"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../components/ui/Dropdown"
+} from "../../components/ui/Dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../components/ui/Dropdown";
 
 export default function TeacherPodcasts() {
-  const [topic, setTopic] = useState("")
-  const [duration, setDuration] = useState(15)
-  const [voice, setVoice] = useState("neutral")
-  const [isGenerating, setIsGenerating] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [playingId, setPlayingId] = useState<number | null>(null)
+  const [topic, setTopic] = useState("");
+  const [duration, setDuration] = useState(15);
+  const [voice, setVoice] = useState("neutral");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [playingId, setPlayingId] = useState(null);
 
   // Sample podcast data
   const podcasts = [
@@ -53,7 +70,8 @@ export default function TeacherPodcasts() {
       createdAt: "2025-03-15",
       shared: 12,
       class: "Math 101",
-      description: "An overview of calculus fundamentals including limits, derivatives, and integrals.",
+      description:
+        "An overview of calculus fundamentals including limits, derivatives, and integrals.",
     },
     {
       id: 2,
@@ -63,7 +81,8 @@ export default function TeacherPodcasts() {
       createdAt: "2025-03-18",
       shared: 8,
       class: "History 101",
-      description: "A comprehensive look at the causes, major events, and aftermath of World War II.",
+      description:
+        "A comprehensive look at the causes, major events, and aftermath of World War II.",
     },
     {
       id: 3,
@@ -73,7 +92,8 @@ export default function TeacherPodcasts() {
       createdAt: "2025-03-20",
       shared: 5,
       class: "Physics 101",
-      description: "Exploring Newton's law of universal gravitation and Einstein's theory of general relativity.",
+      description:
+        "Exploring Newton's law of universal gravitation and Einstein's theory of general relativity.",
     },
     {
       id: 4,
@@ -83,34 +103,35 @@ export default function TeacherPodcasts() {
       createdAt: "2025-03-22",
       shared: 7,
       class: "Science 202",
-      description: "An introduction to cell structure, function, and the fundamental processes of cellular biology.",
+      description:
+        "An introduction to cell structure, function, and the fundamental processes of cellular biology.",
     },
-  ]
+  ];
 
   // Filter podcasts based on search query
   const filteredPodcasts = podcasts.filter(
     (podcast) =>
       podcast.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       podcast.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      podcast.class.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+      podcast.class.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleGeneratePodcast = () => {
-    setIsGenerating(true)
+    setIsGenerating(true);
     // Simulate API call
     setTimeout(() => {
-      setIsGenerating(false)
+      setIsGenerating(false);
       // In a real app, you would add the new podcast to the list
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   const togglePlay = (id) => {
     if (playingId === id) {
-      setPlayingId(null)
+      setPlayingId(null);
     } else {
-      setPlayingId(id)
+      setPlayingId(id);
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col relative">
@@ -137,7 +158,10 @@ export default function TeacherPodcasts() {
               </Button>
             </Link>
             <Link href="/teacher/podcasts">
-              <Button variant="secondary" className="w-full justify-start gap-2">
+              <Button
+                variant="secondary"
+                className="w-full justify-start gap-2"
+              >
                 <MessageSquare className="h-4 w-4" />
                 AI Podcasts
               </Button>
@@ -166,7 +190,9 @@ export default function TeacherPodcasts() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-3xl font-bold">AI Podcasts</h1>
-              <p className="text-muted-foreground">Create and manage educational audio content</p>
+              <p className="text-muted-foreground">
+                Create and manage educational audio content
+              </p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -179,7 +205,9 @@ export default function TeacherPodcasts() {
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-violet-500/5 to-indigo-500/5 dark:from-purple-500/10 dark:via-violet-500/10 dark:to-indigo-500/10 rounded-lg pointer-events-none"></div>
                 <DialogHeader className="relative">
                   <DialogTitle>Generate AI Podcast</DialogTitle>
-                  <DialogDescription>Create an educational podcast for your students.</DialogDescription>
+                  <DialogDescription>
+                    Create an educational podcast for your students.
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4 relative">
                   <div className="grid gap-2">
@@ -208,7 +236,9 @@ export default function TeacherPodcasts() {
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between">
-                      <Label htmlFor="duration">Duration (minutes): {duration}</Label>
+                      <Label htmlFor="duration">
+                        Duration (minutes): {duration}
+                      </Label>
                     </div>
                     <Slider
                       id="duration"
@@ -238,7 +268,9 @@ export default function TeacherPodcasts() {
                     </Select>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="content">Additional Content (Optional)</Label>
+                    <Label htmlFor="content">
+                      Additional Content (Optional)
+                    </Label>
                     <Textarea
                       id="content"
                       placeholder="Paste your notes, textbook excerpts, or other content to include in the podcast"
@@ -308,29 +340,43 @@ export default function TeacherPodcasts() {
                         </CardTitle>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="rounded-full">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="rounded-full"
+                            >
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>Edit Podcast</DropdownMenuItem>
-                            <DropdownMenuItem>Share with Class</DropdownMenuItem>
+                            <DropdownMenuItem>
+                              Share with Class
+                            </DropdownMenuItem>
                             <DropdownMenuItem>Download Audio</DropdownMenuItem>
                             <DropdownMenuItem>Delete Podcast</DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20">
+                        <Badge
+                          variant="outline"
+                          className="bg-purple-500/10 text-purple-500 border-purple-500/20"
+                        >
                           {podcast.subject}
                         </Badge>
-                        <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                        <Badge
+                          variant="outline"
+                          className="bg-primary/10 border-primary/20"
+                        >
                           {podcast.class}
                         </Badge>
                       </div>
                     </CardHeader>
                     <CardContent className="relative">
-                      <p className="text-sm text-muted-foreground mb-4">{podcast.description}</p>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {podcast.description}
+                      </p>
 
                       <div className="rounded-lg bg-muted/50 p-4 flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -340,30 +386,44 @@ export default function TeacherPodcasts() {
                             className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white border-0 hover:opacity-90"
                             onClick={() => togglePlay(podcast.id)}
                           >
-                            {playingId === podcast.id ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                            {playingId === podcast.id ? (
+                              <Pause className="h-4 w-4" />
+                            ) : (
+                              <Play className="h-4 w-4" />
+                            )}
                           </Button>
                           <div>
                             <div className="h-1.5 w-48 bg-muted rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-gradient-to-r from-purple-500 to-violet-600"
-                                style={{ width: playingId === podcast.id ? "45%" : "0%" }}
+                                style={{
+                                  width:
+                                    playingId === podcast.id ? "45%" : "0%",
+                                }}
                               ></div>
                             </div>
                             <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                              <span>{playingId === podcast.id ? "3:25" : "0:00"}</span>
+                              <span>
+                                {playingId === podcast.id ? "3:25" : "0:00"}
+                              </span>
                               <span>{podcast.duration}</span>
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
                           <Clock className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-sm text-muted-foreground">{podcast.duration}</span>
+                          <span className="text-sm text-muted-foreground">
+                            {podcast.duration}
+                          </span>
                         </div>
                       </div>
 
                       <div className="flex items-center justify-between mt-4 text-sm">
                         <div className="flex items-center gap-1 text-muted-foreground">
-                          <span>Created: {new Date(podcast.createdAt).toLocaleDateString()}</span>
+                          <span>
+                            Created:{" "}
+                            {new Date(podcast.createdAt).toLocaleDateString()}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1 text-muted-foreground">
                           <span>Shared: {podcast.shared} times</span>
@@ -391,7 +451,11 @@ export default function TeacherPodcasts() {
             <TabsContent value="recent" className="space-y-4 pt-4">
               <div className="grid gap-4 md:grid-cols-2">
                 {filteredPodcasts
-                  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                  .sort(
+                    (a, b) =>
+                      new Date(b.createdAt).getTime() -
+                      new Date(a.createdAt).getTime()
+                  )
                   .slice(0, 2)
                   .map((podcast) => (
                     <Card
@@ -406,29 +470,47 @@ export default function TeacherPodcasts() {
                           </CardTitle>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="icon" className="rounded-full">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full"
+                              >
                                 <MoreHorizontal className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>Edit Podcast</DropdownMenuItem>
-                              <DropdownMenuItem>Share with Class</DropdownMenuItem>
-                              <DropdownMenuItem>Download Audio</DropdownMenuItem>
-                              <DropdownMenuItem>Delete Podcast</DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Share with Class
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Download Audio
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Delete Podcast
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20">
+                          <Badge
+                            variant="outline"
+                            className="bg-purple-500/10 text-purple-500 border-purple-500/20"
+                          >
                             {podcast.subject}
                           </Badge>
-                          <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                          <Badge
+                            variant="outline"
+                            className="bg-primary/10 border-primary/20"
+                          >
                             {podcast.class}
                           </Badge>
                         </div>
                       </CardHeader>
                       <CardContent className="relative">
-                        <p className="text-sm text-muted-foreground mb-4">{podcast.description}</p>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {podcast.description}
+                        </p>
 
                         <div className="rounded-lg bg-muted/50 p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
@@ -438,30 +520,44 @@ export default function TeacherPodcasts() {
                               className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white border-0 hover:opacity-90"
                               onClick={() => togglePlay(podcast.id)}
                             >
-                              {playingId === podcast.id ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                              {playingId === podcast.id ? (
+                                <Pause className="h-4 w-4" />
+                              ) : (
+                                <Play className="h-4 w-4" />
+                              )}
                             </Button>
                             <div>
                               <div className="h-1.5 w-48 bg-muted rounded-full overflow-hidden">
                                 <div
                                   className="h-full bg-gradient-to-r from-purple-500 to-violet-600"
-                                  style={{ width: playingId === podcast.id ? "45%" : "0%" }}
+                                  style={{
+                                    width:
+                                      playingId === podcast.id ? "45%" : "0%",
+                                  }}
                                 ></div>
                               </div>
                               <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                                <span>{playingId === podcast.id ? "3:25" : "0:00"}</span>
+                                <span>
+                                  {playingId === podcast.id ? "3:25" : "0:00"}
+                                </span>
                                 <span>{podcast.duration}</span>
                               </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
                             <Clock className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">{podcast.duration}</span>
+                            <span className="text-sm text-muted-foreground">
+                              {podcast.duration}
+                            </span>
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between mt-4 text-sm">
                           <div className="flex items-center gap-1 text-muted-foreground">
-                            <span>Created: {new Date(podcast.createdAt).toLocaleDateString()}</span>
+                            <span>
+                              Created:{" "}
+                              {new Date(podcast.createdAt).toLocaleDateString()}
+                            </span>
                           </div>
                           <div className="flex items-center gap-1 text-muted-foreground">
                             <span>Shared: {podcast.shared} times</span>
@@ -504,29 +600,47 @@ export default function TeacherPodcasts() {
                           </CardTitle>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="icon" className="rounded-full">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full"
+                              >
                                 <MoreHorizontal className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>Edit Podcast</DropdownMenuItem>
-                              <DropdownMenuItem>Share with Class</DropdownMenuItem>
-                              <DropdownMenuItem>Download Audio</DropdownMenuItem>
-                              <DropdownMenuItem>Delete Podcast</DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Share with Class
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Download Audio
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Delete Podcast
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20">
+                          <Badge
+                            variant="outline"
+                            className="bg-purple-500/10 text-purple-500 border-purple-500/20"
+                          >
                             {podcast.subject}
                           </Badge>
-                          <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                          <Badge
+                            variant="outline"
+                            className="bg-primary/10 border-primary/20"
+                          >
                             {podcast.class}
                           </Badge>
                         </div>
                       </CardHeader>
                       <CardContent className="relative">
-                        <p className="text-sm text-muted-foreground mb-4">{podcast.description}</p>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {podcast.description}
+                        </p>
 
                         <div className="rounded-lg bg-muted/50 p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
@@ -536,30 +650,44 @@ export default function TeacherPodcasts() {
                               className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 text-white border-0 hover:opacity-90"
                               onClick={() => togglePlay(podcast.id)}
                             >
-                              {playingId === podcast.id ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                              {playingId === podcast.id ? (
+                                <Pause className="h-4 w-4" />
+                              ) : (
+                                <Play className="h-4 w-4" />
+                              )}
                             </Button>
                             <div>
                               <div className="h-1.5 w-48 bg-muted rounded-full overflow-hidden">
                                 <div
                                   className="h-full bg-gradient-to-r from-purple-500 to-violet-600"
-                                  style={{ width: playingId === podcast.id ? "45%" : "0%" }}
+                                  style={{
+                                    width:
+                                      playingId === podcast.id ? "45%" : "0%",
+                                  }}
                                 ></div>
                               </div>
                               <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                                <span>{playingId === podcast.id ? "3:25" : "0:00"}</span>
+                                <span>
+                                  {playingId === podcast.id ? "3:25" : "0:00"}
+                                </span>
                                 <span>{podcast.duration}</span>
                               </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
                             <Clock className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">{podcast.duration}</span>
+                            <span className="text-sm text-muted-foreground">
+                              {podcast.duration}
+                            </span>
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between mt-4 text-sm">
                           <div className="flex items-center gap-1 text-muted-foreground">
-                            <span>Created: {new Date(podcast.createdAt).toLocaleDateString()}</span>
+                            <span>
+                              Created:{" "}
+                              {new Date(podcast.createdAt).toLocaleDateString()}
+                            </span>
                           </div>
                           <div className="flex items-center gap-1 text-muted-foreground">
                             <span>Shared: {podcast.shared} times</span>
@@ -587,5 +715,5 @@ export default function TeacherPodcasts() {
         </main>
       </div>
     </div>
-  )
+  );
 }

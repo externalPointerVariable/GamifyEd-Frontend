@@ -77,7 +77,7 @@ const routes = createBrowserRouter([
       { path: "teacher/calendar", element: suspense(TeacherCalendar) },
       { path: "teacher/settings", element: suspense(TeacherSettings) },
       { path: "teacher/podcasts", element: suspense(TeacherPodcasts) },
-      { path: "teacher/quizzes/page", element: suspense(QuizzesPage) },
+      { path: "teacher/quizzes", element: suspense(QuizzesPage) },
       { path: "teacher/classes/page", element: suspense(ClassesPage) },
 
       {

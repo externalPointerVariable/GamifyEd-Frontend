@@ -24,6 +24,7 @@ import {
   QuizzesPage,
   ClassesPage,
   ClassDetailPage,
+  GenerateQuizPage,
   // Student
   Dashboard,
   Calendar,
@@ -78,13 +79,12 @@ const routes = createBrowserRouter([
       { path: "teacher/settings", element: suspense(TeacherSettings) },
       { path: "teacher/podcasts", element: suspense(TeacherPodcasts) },
       { path: "teacher/quizzes", element: suspense(QuizzesPage) },
+      { path: "teacher/quizzes/generate", element: suspense(GenerateQuizPage) },
       { path: "teacher/classes/page", element: suspense(ClassesPage) },
 
       {
         path: "teacher/classes/:id",
-        children: [
-          { path: "", element: suspense(ClassDetailPage) },
-        ],
+        children: [{ path: "", element: suspense(ClassDetailPage) }],
       },
     ],
   },

@@ -17,6 +17,9 @@ const TeacherPodcasts = lazy(() => import("./teacher/Podcasts.jsx"));
 const TeacherDashboard = lazy(() => import("./teacher/Dashboard.jsx"));
 const TeacherSettings = lazy(() => import("./teacher/Settings.jsx"));
 const QuizzesPage = lazy(() => import("./teacher/quizzes/QuizzesPage.jsx"));
+const GenerateQuizPage = lazy(() =>
+  import("./teacher/quizzes/generate/GenerateQuizPage.jsx")
+);
 const ClassesPage = lazy(() => import("./teacher/classes/ClassesPage.jsx"));
 const ClassDetailPage = lazy(() =>
   import("./teacher/classes/id/ClassDetailPage.jsx")
@@ -63,4 +66,5 @@ export {
   ClassroomPage,
   TestPage,
   TestDetailsPage,
+  GenerateQuizPage,
 };

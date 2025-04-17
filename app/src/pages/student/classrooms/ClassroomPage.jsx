@@ -1,10 +1,15 @@
-"use client"
-
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "../../../components/ui/Button ";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/Card";
+import { Avatar, AvatarFallback, AvatarImage } from "../../../components/ui/Avatar";
 import {
   Bell,
   BookOpen,
@@ -18,12 +23,11 @@ import {
   Plus,
   BookOpenCheck,
   Clock,
-} from "lucide-react"
-import ThreeBackground from "@/components/three-background"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
+} from "lucide-react";
+import ThreeBackground from "../../../components/ThreeBackground";
+import { Badge } from "../../../components/ui/Badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/Tabs";
+import { Input } from "../../../components/ui/Input";
 import {
   Dialog,
   DialogContent,
@@ -32,12 +36,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
+} from "../../../components/ui/Dialog";
+import { Label } from "../../../components/ui/Label";
 
 export default function ClassroomPage() {
-  const [joinCode, setJoinCode] = useState("")
-  const [isJoining, setIsJoining] = useState(false)
+  const [joinCode, setJoinCode] = useState("");
+  const [isJoining, setIsJoining] = useState(false);
 
   // Sample classroom data
   const classrooms = [
@@ -85,7 +89,7 @@ export default function ClassroomPage() {
       tests: 0,
       upcoming: null,
     },
-  ]
+  ];
 
   // Sample assignments and tests
   const assignmentsAndTests = [
@@ -137,88 +141,65 @@ export default function ClassroomPage() {
       points: 30,
       score: 28,
     },
-  ]
+  ];
 
   // Format date for display
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
     return date.toLocaleString("en-US", {
       weekday: "short",
       month: "short",
       day: "numeric",
       hour: "numeric",
       minute: "2-digit",
-    })
-  }
+    });
+  };
 
   // Calculate time remaining
-  const getTimeRemaining = (dateString: string) => {
-    const now = new Date()
-    const dueDate = new Date(dateString)
-    const diffTime = dueDate.getTime() - now.getTime()
+  const getTimeRemaining = (dateString) => {
+    if (!dateString) return "Invalid date";
 
-    if (diffTime <= 0) return "Past due"
+    const now = new Date();
+    const dueDate = new Date(dateString);
 
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
-    const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    if (isNaN(dueDate.getTime())) return "Invalid date";
+
+    const diffTime = dueDate.getTime() - now.getTime();
+
+    if (diffTime <= 0) return "Past due";
+
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor(
+      (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
 
     if (diffDays > 0) {
-      return `${diffDays} day${diffDays > 1 ? "s" : ""} ${diffHours} hr${diffHours > 1 ? "s" : ""}`
+      return `${diffDays} day${diffDays > 1 ? "s" : ""} ${diffHours} hr${
+        diffHours > 1 ? "s" : ""
+      }`;
     } else {
-      const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60))
-      return `${diffHours} hr${diffHours > 1 ? "s" : ""} ${diffMinutes} min${diffMinutes > 1 ? "s" : ""}`
+      const diffMinutes = Math.floor(
+        (diffTime % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      return `${diffHours} hr${diffHours > 1 ? "s" : ""} ${diffMinutes} min${
+        diffMinutes > 1 ? "s" : ""
+      }`;
     }
-  }
+  };
 
   const handleJoinClassroom = () => {
-    setIsJoining(true)
+    setIsJoining(true);
     // Simulate API call
     setTimeout(() => {
-      setIsJoining(false)
-      setJoinCode("")
+      setIsJoining(false);
+      setJoinCode("");
       // In a real app, you would add the new classroom to the list
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold">
-            <Link href="/" className="flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6 text-primary"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5" />
-                <path d="M2 12l10 5 10-5" />
-              </svg>
-              <span>GamifyEd-AI</span>
-            </Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Button variant="ghost" size="icon">
-              <Bell className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <MessageSquare className="h-5 w-5" />
-            </Button>
-            <Avatar>
-              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Student" />
-              <AvatarFallback>SD</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-      </header>
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
           <nav className="grid items-start gap-2">
@@ -229,7 +210,10 @@ export default function ClassroomPage() {
               </Button>
             </Link>
             <Link href="/student/classrooms">
-              <Button variant="secondary" className="w-full justify-start gap-2">
+              <Button
+                variant="secondary"
+                className="w-full justify-start gap-2"
+              >
                 <Users className="h-4 w-4" />
                 Classrooms
               </Button>
@@ -276,7 +260,9 @@ export default function ClassroomPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-3xl font-bold">Classrooms</h1>
-              <p className="text-muted-foreground">Join and manage your classroom assignments and tests</p>
+              <p className="text-muted-foreground">
+                Join and manage your classroom assignments and tests
+              </p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -289,7 +275,9 @@ export default function ClassroomPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                 <DialogHeader className="relative">
                   <DialogTitle>Join a Classroom</DialogTitle>
-                  <DialogDescription>Enter the classroom code provided by your teacher to join.</DialogDescription>
+                  <DialogDescription>
+                    Enter the classroom code provided by your teacher to join.
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4 relative">
                   <div className="grid gap-2">
@@ -344,7 +332,9 @@ export default function ClassroomPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar className="border-2 border-primary/20 transition-all group-hover:border-primary/40">
-                            <AvatarFallback className={`${classroom.color} group-hover:opacity-90 transition-opacity`}>
+                            <AvatarFallback
+                              className={`${classroom.color} group-hover:opacity-90 transition-opacity`}
+                            >
                               {classroom.avatar}
                             </AvatarFallback>
                           </Avatar>
@@ -352,10 +342,15 @@ export default function ClassroomPage() {
                             <CardTitle className="text-xl group-hover:text-primary transition-colors">
                               {classroom.name}
                             </CardTitle>
-                            <CardDescription>{classroom.teacher}</CardDescription>
+                            <CardDescription>
+                              {classroom.teacher}
+                            </CardDescription>
                           </div>
                         </div>
-                        <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                        <Badge
+                          variant="outline"
+                          className="bg-primary/10 border-primary/20"
+                        >
                           {classroom.subject}
                         </Badge>
                       </div>
@@ -363,12 +358,20 @@ export default function ClassroomPage() {
                     <CardContent className="relative">
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{classroom.assignments}</span>
-                          <span className="text-xs text-muted-foreground">Assignments</span>
+                          <span className="text-lg font-bold">
+                            {classroom.assignments}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Assignments
+                          </span>
                         </div>
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{classroom.tests}</span>
-                          <span className="text-xs text-muted-foreground">Tests</span>
+                          <span className="text-lg font-bold">
+                            {classroom.tests}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Tests
+                          </span>
                         </div>
                       </div>
 
@@ -376,7 +379,11 @@ export default function ClassroomPage() {
                         <div className="p-3 rounded-md bg-muted/50 border border-muted group-hover:border-primary/20 transition-colors">
                           <div className="flex items-center gap-2 mb-1">
                             <div
-                              className={`rounded-full p-1 ${classroom.upcoming.type === "test" ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40" : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"}`}
+                              className={`rounded-full p-1 ${
+                                classroom.upcoming.type === "test"
+                                  ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40"
+                                  : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"
+                              }`}
                             >
                               {classroom.upcoming.type === "test" ? (
                                 <BookOpenCheck className="h-3.5 w-3.5" />
@@ -384,7 +391,9 @@ export default function ClassroomPage() {
                                 <BookOpen className="h-3.5 w-3.5" />
                               )}
                             </div>
-                            <span className="text-sm font-medium">Upcoming</span>
+                            <span className="text-sm font-medium">
+                              Upcoming
+                            </span>
                             <div className="ml-auto flex items-center gap-1">
                               <Clock className="h-3 w-3 text-muted-foreground" />
                               <span className="text-xs text-muted-foreground">
@@ -393,11 +402,15 @@ export default function ClassroomPage() {
                             </div>
                           </div>
                           <p className="text-sm">{classroom.upcoming.title}</p>
-                          <p className="text-xs text-muted-foreground">Due: {formatDate(classroom.upcoming.due)}</p>
+                          <p className="text-xs text-muted-foreground">
+                            Due: {formatDate(classroom.upcoming.due)}
+                          </p>
                         </div>
                       ) : (
                         <div className="p-3 rounded-md bg-muted/50 border border-muted group-hover:border-primary/20 transition-colors text-center">
-                          <p className="text-sm text-muted-foreground">No upcoming assignments or tests</p>
+                          <p className="text-sm text-muted-foreground">
+                            No upcoming assignments or tests
+                          </p>
                         </div>
                       )}
                     </CardContent>
@@ -406,7 +419,9 @@ export default function ClassroomPage() {
                         className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                         asChild
                       >
-                        <Link href={`/student/classrooms/${classroom.id}`}>View Classroom</Link>
+                        <Link href={`/student/classrooms/${classroom.id}`}>
+                          View Classroom
+                        </Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -434,7 +449,11 @@ export default function ClassroomPage() {
                           className="flex items-start gap-3 p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/30 transition-all hover:shadow-md hover:shadow-primary/5 group"
                         >
                           <div
-                            className={`rounded-full p-2 mt-0.5 ${item.type === "test" ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40" : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"}`}
+                            className={`rounded-full p-2 mt-0.5 ${
+                              item.type === "test"
+                                ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40"
+                                : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"
+                            }`}
                           >
                             {item.type === "test" ? (
                               <BookOpenCheck className="h-4 w-4" />
@@ -444,20 +463,32 @@ export default function ClassroomPage() {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
-                              <h3 className="font-medium group-hover:text-primary transition-colors">{item.title}</h3>
-                              <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                              <h3 className="font-medium group-hover:text-primary transition-colors">
+                                {item.title}
+                              </h3>
+                              <Badge
+                                variant="outline"
+                                className="bg-primary/10 border-primary/20"
+                              >
                                 {item.points} pts
                               </Badge>
                             </div>
                             <div className="flex items-center justify-between mt-1">
-                              <p className="text-sm text-muted-foreground">{item.classroom}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {item.classroom}
+                              </p>
                               <div className="flex items-center gap-1">
                                 <Clock className="h-3.5 w-3.5 text-muted-foreground" />
-                                <p className="text-sm text-muted-foreground">Due: {formatDate(item.due)}</p>
+                                <p className="text-sm text-muted-foreground">
+                                  Due: {formatDate(item.due)}
+                                </p>
                               </div>
                             </div>
                             <div className="mt-2">
-                              <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                              <Badge
+                                variant="outline"
+                                className="bg-primary/10 border-primary/20"
+                              >
                                 {getTimeRemaining(item.due)}
                               </Badge>
                             </div>
@@ -465,12 +496,16 @@ export default function ClassroomPage() {
                         </div>
                       ))}
 
-                    {assignmentsAndTests.filter((item) => item.status === "not_started").length === 0 && (
+                    {assignmentsAndTests.filter(
+                      (item) => item.status === "not_started"
+                    ).length === 0 && (
                       <div className="flex flex-col items-center justify-center py-8 text-center">
                         <div className="rounded-full bg-muted/70 p-4 mb-4">
                           <BookOpen className="h-12 w-12 text-muted-foreground" />
                         </div>
-                        <p className="text-muted-foreground">No upcoming assignments or tests</p>
+                        <p className="text-muted-foreground">
+                          No upcoming assignments or tests
+                        </p>
                       </div>
                     )}
                   </div>
@@ -484,7 +519,9 @@ export default function ClassroomPage() {
                     <div className="h-6 w-1 bg-gradient-to-b from-green-500 to-emerald-600 rounded-full"></div>
                     Completed Work
                   </CardTitle>
-                  <CardDescription>Recently completed assignments and tests</CardDescription>
+                  <CardDescription>
+                    Recently completed assignments and tests
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="relative">
                   <div className="space-y-4">
@@ -496,7 +533,11 @@ export default function ClassroomPage() {
                           className="flex items-start gap-3 p-3 rounded-md bg-muted/50 border border-muted hover:border-green-500/30 transition-all hover:shadow-md hover:shadow-green-500/5 group"
                         >
                           <div
-                            className={`rounded-full p-2 mt-0.5 ${item.type === "test" ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40" : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"}`}
+                            className={`rounded-full p-2 mt-0.5 ${
+                              item.type === "test"
+                                ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/30 text-blue-500 dark:from-blue-500/40 dark:to-cyan-500/40"
+                                : "bg-gradient-to-br from-amber-500/30 to-orange-500/30 text-amber-500 dark:from-amber-500/40 dark:to-orange-500/40"
+                            }`}
                           >
                             {item.type === "test" ? (
                               <BookOpenCheck className="h-4 w-4" />
@@ -506,7 +547,9 @@ export default function ClassroomPage() {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
-                              <h3 className="font-medium group-hover:text-green-500 transition-colors">{item.title}</h3>
+                              <h3 className="font-medium group-hover:text-green-500 transition-colors">
+                                {item.title}
+                              </h3>
                               <Badge
                                 variant="outline"
                                 className="bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20"
@@ -515,8 +558,12 @@ export default function ClassroomPage() {
                               </Badge>
                             </div>
                             <div className="flex items-center justify-between mt-1">
-                              <p className="text-sm text-muted-foreground">{item.classroom}</p>
-                              <p className="text-sm text-muted-foreground">Completed: {formatDate(item.due)}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {item.classroom}
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                Completed: {formatDate(item.due)}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -537,5 +584,5 @@ export default function ClassroomPage() {
         </main>
       </div>
     </div>
-  )
+  );
 }

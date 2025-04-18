@@ -80,7 +80,7 @@ const routes = createBrowserRouter([
       { path: "teacher/podcasts", element: suspense(TeacherPodcasts) },
       { path: "teacher/quizzes", element: suspense(QuizzesPage) },
       { path: "teacher/quizzes/generate", element: suspense(GenerateQuizPage) },
-      { path: "teacher/classes/page", element: suspense(ClassesPage) },
+      { path: "teacher/classes", element: suspense(ClassesPage) },
 
       {
         path: "teacher/classes/:id",

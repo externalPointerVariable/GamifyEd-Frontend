@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { Link, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from "../../../../../components/ui/Button";
 import {
   Card,
@@ -54,7 +53,7 @@ const classroomsData = {
 
 export default function AssignQuizPage() {
   const params = useParams();
-  const router = useRouter();
+  const router = useNavigate();
   const searchParams = useSearchParams();
   const classroomId = params.id;
   const classroom = classroomsData[classroomId];
@@ -85,7 +84,7 @@ export default function AssignQuizPage() {
       setIsSuccess(true);
       // Redirect after showing success
       setTimeout(() => {
-        router.push(`/teacher/classes/${classroomId}`);
+        router(`/teacher/classes/${classroomId}`);
       }, 2000);
     }, 1500);
   };

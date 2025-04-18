@@ -315,7 +315,7 @@ export default function ClassroomDetailPage() {
 
   if (!classroom) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="flex min-h-screen flex-col items-center justify-center relative z-10">
         <h1 className="text-2xl font-bold">Classroom not found</h1>
         <Button asChild className="mt-4">
           <Link href="/student/classrooms">Back to Classrooms</Link>
@@ -327,7 +327,7 @@ export default function ClassroomDetailPage() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] relative z-10">
         <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
           <nav className="grid items-start gap-2">
             <Link href="/student/dashboard">

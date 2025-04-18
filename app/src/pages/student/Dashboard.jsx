@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import StudentSidebar from "../../components/StudentSidebar";
 import { Button } from "../../components/ui/Button";
 import {
   Card,
@@ -19,12 +19,8 @@ import { Badge } from "../../components/ui/Badge";
 import {
   BookOpen,
   Calendar,
-  LogOut,
   MessageSquare,
-  Settings,
-  Trophy,
-  User,
-  Users,
+  Trophy
 } from "lucide-react";
 import ExperienceBar from "../../components/ExperienceBar";
 import Trophies from "../../components/Trophy";
@@ -57,62 +53,8 @@ export default function StudentDashboard() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/student/dashboard">
-              <Button
-                variant="secondary"
-                className="w-full justify-start gap-2"
-              >
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/student/classrooms">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Classrooms
-              </Button>
-            </Link>
-            <Link href="/student/quizzes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <BookOpen className="h-4 w-4" />
-                Practice Quizzes
-              </Button>
-            </Link>
-            <Link href="/student/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/student/achievements">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Trophy className="h-4 w-4" />
-                Achievements
-              </Button>
-            </Link>
-            <Link href="/student/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/student/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] realtive z-10">
+        <StudentSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl font-bold">Welcome back, Student!</h1>

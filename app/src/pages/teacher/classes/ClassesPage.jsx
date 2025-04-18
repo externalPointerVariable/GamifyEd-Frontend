@@ -1,8 +1,15 @@
-import {Link} from "react-router-dom"
-import { Button } from "../../../components/ui/Button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../../components/ui/Card"
-import { Avatar, AvatarFallback} from "../../../components/ui/Avatar"
-import { Badge } from "../../../components/ui/Badge"
+import { Link } from "react-router-dom";
+import { Button } from "../../../components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/Card";
+import { Avatar, AvatarFallback } from "../../../components/ui/Avatar";
+import { Badge } from "../../../components/ui/Badge";
 import {
   BookOpen,
   Calendar,
@@ -14,11 +21,21 @@ import {
   Plus,
   Search,
   MoreHorizontal,
-} from "lucide-react"
-import ThreeBackground from "../../../components/ThreeBackground"
-import { Input } from "../../../components/ui/Input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/Tabs"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../../components/ui/Dropdown"
+} from "lucide-react";
+import ThreeBackground from "../../../components/ThreeBackground";
+import { Input } from "../../../components/ui/Input";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../components/ui/Tabs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../components/ui/Dropdown";
 import {
   Dialog,
   DialogContent,
@@ -27,16 +44,22 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../components/ui/Dialog"
-import { Label } from "../../../components/ui/Label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/Select"
-import { useState } from "react"
+} from "../../../components/ui/Dialog";
+import { Label } from "../../../components/ui/Label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../components/ui/Select";
+import { useState } from "react";
 
 export default function ClassesPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [className, setClassName] = useState("")
-  const [subject, setSubject] = useState("")
-  const [isCreating, setIsCreating] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [className, setClassName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
 
   // Sample class data
   const classes = [
@@ -44,7 +67,8 @@ export default function ClassesPage() {
       id: 1,
       name: "Math 101",
       subject: "Mathematics",
-      description: "Fundamentals of algebra, geometry, and calculus for beginners.",
+      description:
+        "Fundamentals of algebra, geometry, and calculus for beginners.",
       students: 25,
       avatar: "M",
       color: "bg-blue-500",
@@ -68,7 +92,8 @@ export default function ClassesPage() {
       id: 3,
       name: "History 101",
       subject: "History",
-      description: "Survey of world history from ancient civilizations to modern times.",
+      description:
+        "Survey of world history from ancient civilizations to modern times.",
       students: 22,
       avatar: "H",
       color: "bg-amber-500",
@@ -80,7 +105,8 @@ export default function ClassesPage() {
       id: 4,
       name: "Physics 101",
       subject: "Physics",
-      description: "Introduction to physics concepts including mechanics and thermodynamics.",
+      description:
+        "Introduction to physics concepts including mechanics and thermodynamics.",
       students: 20,
       avatar: "P",
       color: "bg-purple-500",
@@ -88,25 +114,25 @@ export default function ClassesPage() {
       tests: 1,
       lastActive: "1 week ago",
     },
-  ]
+  ];
 
   // Filter classes based on search query
   const filteredClasses = classes.filter(
     (cls) =>
       cls.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cls.subject.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+      cls.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleCreateClass = () => {
-    setIsCreating(true)
+    setIsCreating(true);
     // Simulate API call
     setTimeout(() => {
-      setIsCreating(false)
-      setClassName("")
-      setSubject("")
+      setIsCreating(false);
+      setClassName("");
+      setSubject("");
       // In a real app, you would add the new class to the list
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   return (
     <div className="flex min-h-screen flex-col relative">
@@ -121,7 +147,10 @@ export default function ClassesPage() {
               </Button>
             </Link>
             <Link href="/teacher/classes">
-              <Button variant="secondary" className="w-full justify-start gap-2">
+              <Button
+                variant="secondary"
+                className="w-full justify-start gap-2"
+              >
                 <Users className="h-4 w-4" />
                 Classes
               </Button>
@@ -162,7 +191,9 @@ export default function ClassesPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-3xl font-bold">Classes</h1>
-              <p className="text-muted-foreground">Manage your classes and student assignments</p>
+              <p className="text-muted-foreground">
+                Manage your classes and student assignments
+              </p>
             </div>
             <Dialog>
               <DialogTrigger asChild>
@@ -175,7 +206,9 @@ export default function ClassesPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                 <DialogHeader className="relative">
                   <DialogTitle>Create a New Class</DialogTitle>
-                  <DialogDescription>Enter the details for your new class.</DialogDescription>
+                  <DialogDescription>
+                    Enter the details for your new class.
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4 relative">
                   <div className="grid gap-2">
@@ -202,7 +235,9 @@ export default function ClassesPage() {
                         <SelectItem value="physics">Physics</SelectItem>
                         <SelectItem value="chemistry">Chemistry</SelectItem>
                         <SelectItem value="biology">Biology</SelectItem>
-                        <SelectItem value="computer_science">Computer Science</SelectItem>
+                        <SelectItem value="computer_science">
+                          Computer Science
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -275,7 +310,9 @@ export default function ClassesPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar className="border-2 border-primary/20 transition-all group-hover:border-primary/40">
-                            <AvatarFallback className={`${cls.color} group-hover:opacity-90 transition-opacity`}>
+                            <AvatarFallback
+                              className={`${cls.color} group-hover:opacity-90 transition-opacity`}
+                            >
                               {cls.avatar}
                             </AvatarFallback>
                           </Avatar>
@@ -288,7 +325,11 @@ export default function ClassesPage() {
                         </div>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="rounded-full">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="rounded-full"
+                            >
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
@@ -301,22 +342,37 @@ export default function ClassesPage() {
                       </div>
                     </CardHeader>
                     <CardContent className="relative">
-                      <p className="text-sm text-muted-foreground mb-4">{cls.description}</p>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {cls.description}
+                      </p>
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{cls.students}</span>
-                          <span className="text-xs text-muted-foreground">Students</span>
+                          <span className="text-lg font-bold">
+                            {cls.students}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Students
+                          </span>
                         </div>
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{cls.assignments + cls.tests}</span>
-                          <span className="text-xs text-muted-foreground">Activities</span>
+                          <span className="text-lg font-bold">
+                            {cls.assignments + cls.tests}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Activities
+                          </span>
                         </div>
                       </div>
 
                       <div className="p-3 rounded-md bg-muted/50 border border-muted group-hover:border-primary/20 transition-colors">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Last Active</span>
-                          <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                          <span className="text-sm font-medium">
+                            Last Active
+                          </span>
+                          <Badge
+                            variant="outline"
+                            className="bg-primary/10 border-primary/20"
+                          >
                             {cls.lastActive}
                           </Badge>
                         </div>
@@ -324,7 +380,9 @@ export default function ClassesPage() {
                           <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-indigo-500 to-purple-600"
-                              style={{ width: `${(cls.assignments + cls.tests) * 10}%` }}
+                              style={{
+                                width: `${(cls.assignments + cls.tests) * 10}%`,
+                              }}
                             ></div>
                           </div>
                           <span className="text-xs text-muted-foreground">
@@ -338,7 +396,9 @@ export default function ClassesPage() {
                         asChild
                         className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
-                        <Link href={`/teacher/classes/${cls.id}`}>Manage Class</Link>
+                        <Link href={`/teacher/classes/${cls.id}`}>
+                          Manage Class
+                        </Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -358,7 +418,9 @@ export default function ClassesPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar className="border-2 border-primary/20 transition-all group-hover:border-primary/40">
-                            <AvatarFallback className={`${cls.color} group-hover:opacity-90 transition-opacity`}>
+                            <AvatarFallback
+                              className={`${cls.color} group-hover:opacity-90 transition-opacity`}
+                            >
                               {cls.avatar}
                             </AvatarFallback>
                           </Avatar>
@@ -371,7 +433,11 @@ export default function ClassesPage() {
                         </div>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="rounded-full">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="rounded-full"
+                            >
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
@@ -384,22 +450,37 @@ export default function ClassesPage() {
                       </div>
                     </CardHeader>
                     <CardContent className="relative">
-                      <p className="text-sm text-muted-foreground mb-4">{cls.description}</p>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {cls.description}
+                      </p>
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{cls.students}</span>
-                          <span className="text-xs text-muted-foreground">Students</span>
+                          <span className="text-lg font-bold">
+                            {cls.students}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Students
+                          </span>
                         </div>
                         <div className="flex flex-col items-center justify-center p-3 bg-primary/5 rounded-lg border border-primary/10 group-hover:border-primary/20 transition-colors">
-                          <span className="text-lg font-bold">{cls.assignments + cls.tests}</span>
-                          <span className="text-xs text-muted-foreground">Activities</span>
+                          <span className="text-lg font-bold">
+                            {cls.assignments + cls.tests}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            Activities
+                          </span>
                         </div>
                       </div>
 
                       <div className="p-3 rounded-md bg-muted/50 border border-muted group-hover:border-primary/20 transition-colors">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Last Active</span>
-                          <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                          <span className="text-sm font-medium">
+                            Last Active
+                          </span>
+                          <Badge
+                            variant="outline"
+                            className="bg-primary/10 border-primary/20"
+                          >
                             {cls.lastActive}
                           </Badge>
                         </div>
@@ -407,7 +488,9 @@ export default function ClassesPage() {
                           <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-indigo-500 to-purple-600"
-                              style={{ width: `${(cls.assignments + cls.tests) * 10}%` }}
+                              style={{
+                                width: `${(cls.assignments + cls.tests) * 10}%`,
+                              }}
                             ></div>
                           </div>
                           <span className="text-xs text-muted-foreground">
@@ -421,7 +504,9 @@ export default function ClassesPage() {
                         asChild
                         className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
-                        <Link href={`/teacher/classes/${cls.id}`}>Manage Class</Link>
+                        <Link href={`/teacher/classes/${cls.id}`}>
+                          Manage Class
+                        </Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -434,9 +519,12 @@ export default function ClassesPage() {
                 <div className="rounded-full bg-muted/70 p-6 mb-4">
                   <Users className="h-12 w-12 text-muted-foreground" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">No Archived Classes</h3>
+                <h3 className="text-xl font-medium mb-2">
+                  No Archived Classes
+                </h3>
                 <p className="text-muted-foreground max-w-md">
-                  You don't have any archived classes yet. When you archive a class, it will appear here.
+                  You don't have any archived classes yet. When you archive a
+                  class, it will appear here.
                 </p>
               </div>
             </TabsContent>
@@ -444,5 +532,5 @@ export default function ClassesPage() {
         </main>
       </div>
     </div>
-  )
+  );
 }

@@ -63,13 +63,13 @@ export default function Calendar() {
   const selectedDateEvents = selectedDate ? getEventsForDate(selectedDate) : []
 
   return (
-    <div className="flex flex-col min-h-screen px-4 py-6 gap-6 bg-white dark:bg-black text-black dark:text-white">
+    <div className="flex flex-col min-h-screen px-4 py-6 gap-6 bg-white dark:bg-black text-black dark:text-white relative">
       <div>
         <h1 className="text-3xl font-bold mb-1">Learning Calendar</h1>
         <p className="text-muted-foreground text-sm">Schedule and track your learning activities</p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+      <div className="grid gap-6 lg:grid-cols-[1fr_300px] relative z-10">
         <div className="border rounded-lg shadow-md p-4 bg-white dark:bg-zinc-900">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-lg">{monthName} {year}</h2>

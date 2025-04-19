@@ -31,6 +31,7 @@ const Podcasts = lazy(() => import("./student/Podcasts.jsx"));
 const Dashboard = lazy(() => import("./student/Dashboard.jsx"));
 const Settings = lazy(() => import("./student/Settings.jsx"));
 const Quizzes = lazy(() => import("./student/Quizzes.jsx"));
+const QuizStart = lazy(() => import("./student/QuizStart.jsx"));
 const Achievements = lazy(() => import("./student/Achievements.jsx"));
 const ClassroomPage = lazy(() =>
   import("./student/classrooms/ClassroomPage.jsx")
@@ -61,6 +62,7 @@ export {
   Dashboard,
   Settings,
   Quizzes,
+  QuizStart,
   Achievements,
   ClassDetailPage,
   ClassroomPage,

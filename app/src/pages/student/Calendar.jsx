@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import {
   Card,
@@ -184,7 +183,7 @@ export default function Calendar() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] relative z-10">
         <StudentSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

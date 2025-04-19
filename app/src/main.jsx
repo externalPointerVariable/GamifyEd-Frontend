@@ -31,6 +31,7 @@ import {
   Settings,
   Podcasts,
   Quizzes,
+  QuizStart,
   Achievements,
   ClassroomPage,
   TestPage,
@@ -65,14 +66,11 @@ const routes = createBrowserRouter([
       { path: "student/settings", element: suspense(Settings) },
       { path: "student/podcasts", element: suspense(Podcasts) },
       { path: "student/quizzes", element: suspense(Quizzes) },
+      { path: "student/quiz", element: suspense(QuizStart) },
       { path: "student/achievements", element: suspense(Achievements) },
       { path: "student/classrooms", element: suspense(ClassroomPage) },
       { path: "student/classrooms/test", element: suspense(TestPage) },
-      {
-        path: "student/classrooms/test/details/page",
-        element: suspense(TestDetailsPage),
-      },
-
+      { path: "student/classrooms/test/details/page",element: suspense(TestDetailsPage) },
       // Teacher
       { path: "teacher/dashboard", element: suspense(TeacherDashboard) },
       { path: "teacher/calendar", element: suspense(TeacherCalendar) },

@@ -42,7 +42,7 @@ import { Textarea } from "../../components/ui/Textarea";
 
 export default function TeacherCalendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = (useState < Date) | (null > null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [eventTitle, setEventTitle] = useState("");
   const [eventType, setEventType] = useState("");
   const [isCreating, setIsCreating] = useState(false);

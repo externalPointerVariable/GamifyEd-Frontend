@@ -1,5 +1,6 @@
 import React from "react";
 import {Users, User, BookOpen, MessageSquare, Calendar, Settings, LogOut} from "lucide-react";
+import {Button} from "../components/ui/Button";
 import {Link} from 'react-router-dom';
 function TeacherSidebar() {
   return (

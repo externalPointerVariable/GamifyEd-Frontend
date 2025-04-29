@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/ui/Button";
 import {
   Card,
@@ -12,18 +12,7 @@ import {
 import { Input } from "../../../components/ui/Input";
 import { Label } from "../../../components/ui/Label";
 import { Textarea } from "../../../components/ui/Textarea";
-import {
-  BookOpen,
-  Calendar,
-  LogOut,
-  MessageSquare,
-  Plus,
-  Settings,
-  Trash,
-  User,
-  Users,
-  Loader2,
-} from "lucide-react";
+import { Plus, Trash, Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -31,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/Select";
+import TeacherSidebar from "../../../components/TeacherSidebar";
 
 export default function QuizzesPage() {
   const router = useNavigate();
@@ -80,57 +70,9 @@ export default function QuizzesPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/teacher/dashboard">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/teacher/classes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Classes
-              </Button>
-            </Link>
-            <Link href="/teacher/quizzes">
-              <Button
-                variant="secondary"
-                className="w-full justify-start gap-2"
-              >
-                <BookOpen className="h-4 w-4" />
-                Test Quizzes
-              </Button>
-            </Link>
-            <Link href="/teacher/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/teacher/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/teacher/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+    <div className="flex min-h-screen flex-col realtive">
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] realtive z-10">
+        <TeacherSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl font-bold">Create Test Quiz</h1>

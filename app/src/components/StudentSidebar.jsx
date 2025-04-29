@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Button } from "./ui/Button";
 import {
   BookOpen,
@@ -12,6 +13,11 @@ import {
   Users,
 } from "lucide-react";
 
+const handleLogOut = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+};
 const links = [
   { to: "/student/dashboard", label: "Dashboard", icon: <User className="h-4 w-4" /> },
   { to: "/student/classrooms", label: "Classrooms", icon: <Users className="h-4 w-4" /> },

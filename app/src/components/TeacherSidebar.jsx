@@ -1,57 +1,95 @@
 import React from "react";
-import {Users, User, BookOpen, MessageSquare, Calendar, Settings, LogOut} from "lucide-react";
-import {Button} from "../components/ui/Button";
-import {Link} from 'react-router-dom';
+import {
+  Users,
+  User,
+  BookOpen,
+  MessageSquare,
+  Calendar,
+  Settings,
+  LogOut,
+} from "lucide-react";
+import { Button } from "../components/ui/Button";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/authSlice";
+
+// Custom hook for logout functionality.
+function useLogout() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  return () => {
+    dispatch(setUser({}));
+    navigate("/login");
+  };
+}
+
+// Teacher sidebar links defined outside the component to avoid unnecessary recreations.
+const teacherLinks = [
+  {
+    to: "/teacher/dashboard",
+    label: "Dashboard",
+    icon: <User className="h-4 w-4" />,
+  },
+  {
+    to: "/teacher/classes",
+    label: "Classes",
+    icon: <Users className="h-4 w-4" />,
+  },
+  {
+    to: "/teacher/quizzes",
+    label: "Test Quizzes",
+    icon: <BookOpen className="h-4 w-4" />,
+  },
+  {
+    to: "/teacher/podcasts",
+    label: "AI Podcasts",
+    icon: <MessageSquare className="h-4 w-4" />,
+  },
+  {
+    to: "/teacher/calendar",
+    label: "Calendar",
+    icon: <Calendar className="h-4 w-4" />,
+  },
+  {
+    to: "/teacher/settings",
+    label: "Settings",
+    icon: <Settings className="h-4 w-4" />,
+  },
+  {
+    to: "/login",
+    label: "Logout",
+    icon: <LogOut className="h-4 w-4" />,
+  },
+];
+
 function TeacherSidebar() {
+  const location = useLocation();
+  const logout = useLogout();
+
   return (
-    <>
-      <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-        <nav className="grid items-start gap-2">
-          <Link to="/teacher/dashboard">
-            <Button variant="secondary" className="w-full justify-start gap-2">
-              <User className="h-4 w-4" />
-              Dashboard
-            </Button>
-          </Link>
-          <Link to="/teacher/classes">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Users className="h-4 w-4" />
-              Classes
-            </Button>
-          </Link>
-          <Link to="/teacher/quizzes">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <BookOpen className="h-4 w-4" />
-              Test Quizzes
-            </Button>
-          </Link>
-          <Link to="/teacher/podcasts">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <MessageSquare className="h-4 w-4" />
-              AI Podcasts
-            </Button>
-          </Link>
-          <Link to="/teacher/calendar">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Calendar className="h-4 w-4" />
-              Calendar
-            </Button>
-          </Link>
-          <Link to="/teacher/settings">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <Settings className="h-4 w-4" />
-              Settings
-            </Button>
-          </Link>
-          <Link to="/login">
-            <Button variant="ghost" className="w-full justify-start gap-2">
-              <LogOut className="h-4 w-4" />
-              Logout
-            </Button>
-          </Link>
-        </nav>
-      </aside>
-    </>
+    <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
+      <nav className="grid items-start gap-2">
+        {teacherLinks.map(({ to, label, icon }) => {
+          const isActive = location.pathname === to;
+          return (
+            <Link
+              key={to}
+              to={to}
+              onClick={to === "/login" ? useLogout : undefined}
+            >
+              <Button
+                variant={isActive ? "secondary" : "ghost"}
+                className="w-full justify-start gap-2"
+              >
+                {icon}
+                {label}
+              </Button>
+            </Link>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }
 

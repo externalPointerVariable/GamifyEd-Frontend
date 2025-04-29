@@ -44,7 +44,7 @@ export default function Header() {
         {/* Right-side Controls */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          {!user.role ? (
+          {!user ? (
             <>
               <Link
                 to="/login"

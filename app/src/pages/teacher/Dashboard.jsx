@@ -1,64 +1,18 @@
-"use client"
-import {Link} from "react-router-dom"
 import { Button } from "../../components/ui/Button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/Card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/Tabs"
 import { Avatar, AvatarFallback } from "../../components/ui/Avatar"
 import { Badge } from "../../components/ui/Badge"
-import { BookOpen, Calendar, LogOut, MessageSquare, Settings, User, Users, Plus } from "lucide-react"
+import { BookOpen, MessageSquare, Users, Plus } from "lucide-react"
 import ThreeBackground from "../../components/ThreeBackground"
+import TeacherSidebar from "../../components/TeacherSidebar"
 
 export default function TeacherDashboard() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/teacher/dashboard">
-              <Button variant="secondary" className="w-full justify-start gap-2">
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/teacher/classes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Classes
-              </Button>
-            </Link>
-            <Link href="/teacher/quizzes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <BookOpen className="h-4 w-4" />
-                Test Quizzes
-              </Button>
-            </Link>
-            <Link href="/teacher/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/teacher/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/teacher/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+        <TeacherSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl font-bold">Welcome back, Teacher!</h1>

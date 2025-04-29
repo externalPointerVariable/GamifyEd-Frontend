@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SuspenseWrapper } from "./components/index.js";
 import { Provider } from "react-redux";
@@ -35,7 +34,6 @@ import {
   Achievements,
   ClassroomPage,
   TestPage,
-  TestDetailsPage,
 } from "./pages/index.js";
 
 const suspense = (Component) => (
@@ -70,7 +68,6 @@ const routes = createBrowserRouter([
       { path: "student/achievements", element: suspense(Achievements) },
       { path: "student/classrooms", element: suspense(ClassroomPage) },
       { path: "student/classrooms/test", element: suspense(TestPage) },
-      { path: "student/classrooms/test/details/page",element: suspense(TestDetailsPage) },
       // Teacher
       { path: "teacher/dashboard", element: suspense(TeacherDashboard) },
       { path: "teacher/calendar", element: suspense(TeacherCalendar) },
@@ -89,7 +86,7 @@ const routes = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-    <Provider store={store}>
-      <RouterProvider router={routes} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={routes} />
+  </Provider>
 );

@@ -11,12 +11,6 @@ import {
 import { Avatar, AvatarFallback } from "../../../components/ui/Avatar";
 import { Badge } from "../../../components/ui/Badge";
 import {
-  BookOpen,
-  Calendar,
-  LogOut,
-  MessageSquare,
-  Settings,
-  User,
   Users,
   Plus,
   Search,
@@ -54,6 +48,7 @@ import {
   SelectValue,
 } from "../../../components/ui/Select";
 import { useState } from "react";
+import TeacherSidebar from "../../../components/TeacherSidebar";
 
 export default function ClassesPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -137,56 +132,8 @@ export default function ClassesPage() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/teacher/dashboard">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/teacher/classes">
-              <Button
-                variant="secondary"
-                className="w-full justify-start gap-2"
-              >
-                <Users className="h-4 w-4" />
-                Classes
-              </Button>
-            </Link>
-            <Link href="/teacher/quizzes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <BookOpen className="h-4 w-4" />
-                Test Quizzes
-              </Button>
-            </Link>
-            <Link href="/teacher/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/teacher/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/teacher/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] relative z-10">
+        <TeacherSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
@@ -396,7 +343,7 @@ export default function ClassesPage() {
                         asChild
                         className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
-                        <Link href={`/teacher/classes/${cls.id}`}>
+                        <Link to={`/teacher/classes/${cls.id}`}>
                           Manage Class
                         </Link>
                       </Button>
@@ -504,7 +451,7 @@ export default function ClassesPage() {
                         asChild
                         className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
-                        <Link href={`/teacher/classes/${cls.id}`}>
+                        <Link to={`/teacher/classes/${cls.id}`}>
                           Manage Class
                         </Link>
                       </Button>

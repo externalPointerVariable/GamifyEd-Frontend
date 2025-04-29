@@ -37,9 +37,6 @@ const ClassroomPage = lazy(() =>
   import("./student/classrooms/ClassroomPage.jsx")
 );
 const TestPage = lazy(() => import("./student/classrooms/test/TestPage.jsx"));
-const TestDetailsPage = lazy(() =>
-  import("./student/classrooms/test/testDetails/TestDetailsPage.jsx")
-);
 
 export {
   Home,
@@ -67,6 +64,5 @@ export {
   ClassDetailPage,
   ClassroomPage,
   TestPage,
-  TestDetailsPage,
   GenerateQuizPage,
 };

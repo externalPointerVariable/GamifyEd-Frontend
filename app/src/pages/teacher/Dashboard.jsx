@@ -1,68 +1,36 @@
-"use client"
-import {Link} from "react-router-dom"
-import { Button } from "../../components/ui/Button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/Card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/Tabs"
-import { Avatar, AvatarFallback } from "../../components/ui/Avatar"
-import { Badge } from "../../components/ui/Badge"
-import { BookOpen, Calendar, LogOut, MessageSquare, Settings, User, Users, Plus } from "lucide-react"
-import ThreeBackground from "../../components/ThreeBackground"
+import { Button } from "../../components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/Card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../components/ui/Tabs";
+import { Avatar, AvatarFallback } from "../../components/ui/Avatar";
+import { Badge } from "../../components/ui/Badge";
+import { BookOpen, MessageSquare, Users, Plus } from "lucide-react";
+import ThreeBackground from "../../components/ThreeBackground";
+import TeacherSidebar from "../../components/TeacherSidebar";
 
 export default function TeacherDashboard() {
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/teacher/dashboard">
-              <Button variant="secondary" className="w-full justify-start gap-2">
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/teacher/classes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Classes
-              </Button>
-            </Link>
-            <Link href="/teacher/quizzes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <BookOpen className="h-4 w-4" />
-                Test Quizzes
-              </Button>
-            </Link>
-            <Link href="/teacher/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/teacher/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/teacher/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] relative z-10">
+        <TeacherSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl font-bold">Welcome back, Teacher!</h1>
-            <p className="text-muted-foreground">Manage your classes and create educational content</p>
+            <p className="text-muted-foreground">
+              Manage your classes and create educational content
+            </p>
           </div>
 
           <Card className="backdrop-blur bg-background/80 border-primary/20 overflow-hidden">
@@ -72,7 +40,9 @@ export default function TeacherDashboard() {
                 <div className="h-6 w-1 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full"></div>
                 Teacher Overview
               </CardTitle>
-              <CardDescription>Your teaching statistics at a glance</CardDescription>
+              <CardDescription>
+                Your teaching statistics at a glance
+              </CardDescription>
             </CardHeader>
             <CardContent className="relative">
               <div className="grid gap-4 md:grid-cols-3">
@@ -81,7 +51,9 @@ export default function TeacherDashboard() {
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-2xl font-bold">87</div>
-                  <p className="text-xs text-muted-foreground">Total Students</p>
+                  <p className="text-xs text-muted-foreground">
+                    Total Students
+                  </p>
                   <Badge className="mt-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                     +5 from last month
                   </Badge>
@@ -91,7 +63,9 @@ export default function TeacherDashboard() {
                     <BookOpen className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-2xl font-bold">4</div>
-                  <p className="text-xs text-muted-foreground">Active Classes</p>
+                  <p className="text-xs text-muted-foreground">
+                    Active Classes
+                  </p>
                   <Badge className="mt-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                     Same as last month
                   </Badge>
@@ -101,7 +75,9 @@ export default function TeacherDashboard() {
                     <MessageSquare className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-2xl font-bold">23</div>
-                  <p className="text-xs text-muted-foreground">Content Created</p>
+                  <p className="text-xs text-muted-foreground">
+                    Content Created
+                  </p>
                   <Badge className="mt-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                     +8 from last month
                   </Badge>
@@ -149,18 +125,28 @@ export default function TeacherDashboard() {
                           <BookOpen className="h-4 w-4" />
                         </div>
                         <div className="flex-1 space-y-1">
-                          <p className="text-sm font-medium leading-none">Created Math Quiz</p>
-                          <p className="text-sm text-muted-foreground">Algebra Fundamentals • 15 questions</p>
+                          <p className="text-sm font-medium leading-none">
+                            Created Math Quiz
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Algebra Fundamentals • 15 questions
+                          </p>
                         </div>
-                        <div className="text-sm text-muted-foreground bg-muted/70 px-2 py-1 rounded-full">1h ago</div>
+                        <div className="text-sm text-muted-foreground bg-muted/70 px-2 py-1 rounded-full">
+                          1h ago
+                        </div>
                       </div>
                       <div className="flex items-center gap-4 p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/20 transition-all">
                         <div className="rounded-full bg-gradient-to-br from-purple-500/30 to-violet-500/30 text-purple-500 dark:from-purple-500/40 dark:to-violet-500/40 p-2">
                           <MessageSquare className="h-4 w-4" />
                         </div>
                         <div className="flex-1 space-y-1">
-                          <p className="text-sm font-medium leading-none">Generated History Podcast</p>
-                          <p className="text-sm text-muted-foreground">World War II • 20 minutes</p>
+                          <p className="text-sm font-medium leading-none">
+                            Generated History Podcast
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            World War II • 20 minutes
+                          </p>
                         </div>
                         <div className="text-sm text-muted-foreground bg-muted/70 px-2 py-1 rounded-full">
                           Yesterday
@@ -171,8 +157,12 @@ export default function TeacherDashboard() {
                           <Users className="h-4 w-4" />
                         </div>
                         <div className="flex-1 space-y-1">
-                          <p className="text-sm font-medium leading-none">Added 5 Students to Physics Class</p>
-                          <p className="text-sm text-muted-foreground">Physics 101</p>
+                          <p className="text-sm font-medium leading-none">
+                            Added 5 Students to Physics Class
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Physics 101
+                          </p>
                         </div>
                         <div className="text-sm text-muted-foreground bg-muted/70 px-2 py-1 rounded-full">
                           3 days ago
@@ -189,7 +179,9 @@ export default function TeacherDashboard() {
                       <div className="h-6 w-1 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full"></div>
                       Quick Actions
                     </CardTitle>
-                    <CardDescription>Create content or manage classes</CardDescription>
+                    <CardDescription>
+                      Create content or manage classes
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="relative grid gap-4">
                     <Button className="w-full justify-start gap-2 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white border-0">
@@ -224,11 +216,15 @@ export default function TeacherDashboard() {
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/20 transition-all">
                       <div className="flex items-center gap-4">
                         <Avatar>
-                          <AvatarFallback className="bg-blue-500">M</AvatarFallback>
+                          <AvatarFallback className="bg-blue-500">
+                            M
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <p className="font-medium">Math 101</p>
-                          <p className="text-sm text-muted-foreground">25 students</p>
+                          <p className="text-sm text-muted-foreground">
+                            25 students
+                          </p>
                         </div>
                       </div>
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20">
@@ -244,11 +240,15 @@ export default function TeacherDashboard() {
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/20 transition-all">
                       <div className="flex items-center gap-4">
                         <Avatar>
-                          <AvatarFallback className="bg-green-500">S</AvatarFallback>
+                          <AvatarFallback className="bg-green-500">
+                            S
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <p className="font-medium">Science 202</p>
-                          <p className="text-sm text-muted-foreground">18 students</p>
+                          <p className="text-sm text-muted-foreground">
+                            18 students
+                          </p>
                         </div>
                       </div>
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20">
@@ -264,11 +264,15 @@ export default function TeacherDashboard() {
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/20 transition-all">
                       <div className="flex items-center gap-4">
                         <Avatar>
-                          <AvatarFallback className="bg-amber-500">H</AvatarFallback>
+                          <AvatarFallback className="bg-amber-500">
+                            H
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <p className="font-medium">History 101</p>
-                          <p className="text-sm text-muted-foreground">22 students</p>
+                          <p className="text-sm text-muted-foreground">
+                            22 students
+                          </p>
                         </div>
                       </div>
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20">
@@ -284,11 +288,15 @@ export default function TeacherDashboard() {
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-primary/20 transition-all">
                       <div className="flex items-center gap-4">
                         <Avatar>
-                          <AvatarFallback className="bg-blue-500">P</AvatarFallback>
+                          <AvatarFallback className="bg-blue-500">
+                            P
+                          </AvatarFallback>
                         </Avatar>
                         <div>
                           <p className="font-medium">Physics 101</p>
-                          <p className="text-sm text-muted-foreground">22 students</p>
+                          <p className="text-sm text-muted-foreground">
+                            22 students
+                          </p>
                         </div>
                       </div>
                       <Badge className="bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20">
@@ -320,7 +328,9 @@ export default function TeacherDashboard() {
                     <div className="h-6 w-1 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full"></div>
                     Educational Content
                   </CardTitle>
-                  <CardDescription>Create and manage your content</CardDescription>
+                  <CardDescription>
+                    Create and manage your content
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="relative">
                   <Tabs defaultValue="quizzes" className="w-full">
@@ -344,7 +354,9 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-blue-500/20 transition-all">
                           <div>
                             <p className="font-medium">Algebra Fundamentals</p>
-                            <p className="text-sm text-muted-foreground">15 questions • Math 101</p>
+                            <p className="text-sm text-muted-foreground">
+                              15 questions • Math 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -365,7 +377,9 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-blue-500/20 transition-all">
                           <div>
                             <p className="font-medium">World War II</p>
-                            <p className="text-sm text-muted-foreground">10 questions • History 101</p>
+                            <p className="text-sm text-muted-foreground">
+                              10 questions • History 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -386,7 +400,9 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-blue-500/20 transition-all">
                           <div>
                             <p className="font-medium">Newton's Laws</p>
-                            <p className="text-sm text-muted-foreground">12 questions • Physics 101</p>
+                            <p className="text-sm text-muted-foreground">
+                              12 questions • Physics 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -415,8 +431,12 @@ export default function TeacherDashboard() {
                       <div className="space-y-4">
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-purple-500/20 transition-all">
                           <div>
-                            <p className="font-medium">Introduction to Calculus</p>
-                            <p className="text-sm text-muted-foreground">15 minutes • Math 101</p>
+                            <p className="font-medium">
+                              Introduction to Calculus
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              15 minutes • Math 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -437,7 +457,9 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-purple-500/20 transition-all">
                           <div>
                             <p className="font-medium">World War II Overview</p>
-                            <p className="text-sm text-muted-foreground">20 minutes • History 101</p>
+                            <p className="text-sm text-muted-foreground">
+                              20 minutes • History 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -458,7 +480,9 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 border border-muted hover:border-purple-500/20 transition-all">
                           <div>
                             <p className="font-medium">Understanding Gravity</p>
-                            <p className="text-sm text-muted-foreground">18 minutes • Physics 101</p>
+                            <p className="text-sm text-muted-foreground">
+                              18 minutes • Physics 101
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <Button
@@ -490,5 +514,5 @@ export default function TeacherDashboard() {
         </main>
       </div>
     </div>
-  )
+  );
 }

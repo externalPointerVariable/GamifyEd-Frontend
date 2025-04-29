@@ -1,17 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Bell, MessageSquare } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const user = useSelector((state) => state.auth.user);
+  const handleNavigation = () => {
+    const navigate = useNavigate();
+    if (user.role === "student") {
+      navigate("student/dashboard");
+    }
+    if (user.role === "teacher") {
+      navigate("teacher/dashboard");
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-gray-900 backdrop-blur-md dark:bg-black">
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 text-white font-semibold">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-white font-semibold"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -60,6 +72,7 @@ export default function Header() {
                   src="/placeholder.svg?height=40&width=40"
                   alt="User Avatar"
                   className="w-full h-full object-cover"
+                  onClick={handleNavigation}
                 />
               </div>
             </>

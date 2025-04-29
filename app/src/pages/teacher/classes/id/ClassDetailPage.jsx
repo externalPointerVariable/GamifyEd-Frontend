@@ -1,15 +1,15 @@
-import {Link, useParams} from "react-router-dom"
-import { Button } from "../../../../components/ui/Button"
-import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/Card"
-import { Avatar, AvatarFallback} from "../../../../components/ui/Avatar"
-import { Badge } from "../../../../components/ui/Badge"
+import { Link, useParams } from "react-router-dom";
+import { Button } from "../../../../components/ui/Button";
 import {
-  BookOpen,
-  Calendar,
-  LogOut,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../../components/ui/Card";
+import { Avatar, AvatarFallback } from "../../../../components/ui/Avatar";
+import { Badge } from "../../../../components/ui/Badge";
+import {
   MessageSquare,
-  Settings,
-  User,
   Users,
   Plus,
   ArrowLeft,
@@ -20,11 +20,16 @@ import {
   MoreHorizontal,
   Search,
   Download,
-} from "lucide-react"
-import ThreeBackground from "../../../../components/ThreeBackground"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/Tabs"
-import { Input } from "../../../../components/ui/Input"
-import { useState } from "react"
+} from "lucide-react";
+import ThreeBackground from "../../../../components/ThreeBackground";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../../components/ui/Tabs";
+import { Input } from "../../../../components/ui/Input";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -33,21 +38,41 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../../../components/ui/Dialog"
-import { Label } from "../../../../components/ui/Label"
-import { Textarea } from "../../../../components/ui/Textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/Select"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../../../components/ui/Dropdown"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../../components/ui/Table"
+} from "../../../../components/ui/Dialog";
+import { Label } from "../../../../components/ui/Label";
+import { Textarea } from "../../../../components/ui/Textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../../components/ui/Select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../../../components/ui/Dropdown";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../../../../components/ui/Table";
+import TeacherSidebar from "../../../../components/TeacherSidebar";
 
 // Mock classroom data
 const classroomsData = {
-  "1": {
+  1: {
     id: 1,
     name: "Math 101",
     teacher: "Mrs. Johnson",
     subject: "Mathematics",
-    description: "Fundamentals of algebra, geometry, and calculus for beginners.",
+    description:
+      "Fundamentals of algebra, geometry, and calculus for beginners.",
     students: 24,
     avatar: "M",
     color: "bg-blue-500",
@@ -57,13 +82,15 @@ const classroomsData = {
       {
         id: 1,
         title: "Test Next Week",
-        content: "We will have a test on algebra fundamentals next Tuesday. Please review chapters 3-5.",
+        content:
+          "We will have a test on algebra fundamentals next Tuesday. Please review chapters 3-5.",
         date: "2025-03-25",
       },
       {
         id: 2,
         title: "Office Hours Change",
-        content: "My office hours will be moved to Thursday 3-5 PM this week only.",
+        content:
+          "My office hours will be moved to Thursday 3-5 PM this week only.",
         date: "2025-03-20",
       },
     ],
@@ -95,7 +122,8 @@ const classroomsData = {
         dueDate: "2025-03-15T14:30:00",
         status: "completed",
         points: 150,
-        description: "Comprehensive exam covering all material from the first half of the semester.",
+        description:
+          "Comprehensive exam covering all material from the first half of the semester.",
         submissions: 24,
       },
       {
@@ -105,7 +133,8 @@ const classroomsData = {
         dueDate: "2025-03-10T23:59:00",
         status: "completed",
         points: 30,
-        description: "Practice problems on sine, cosine, and tangent functions.",
+        description:
+          "Practice problems on sine, cosine, and tangent functions.",
         submissions: 22,
       },
     ],
@@ -215,7 +244,7 @@ const classroomsData = {
       },
     ],
   },
-  "2": {
+  2: {
     id: 2,
     name: "Science 202",
     teacher: "Mr. Peterson",
@@ -230,7 +259,8 @@ const classroomsData = {
       {
         id: 1,
         title: "Lab Report Due",
-        content: "Don't forget your lab report on photosynthesis is due this Friday.",
+        content:
+          "Don't forget your lab report on photosynthesis is due this Friday.",
         date: "2025-03-22",
       },
     ],
@@ -242,7 +272,8 @@ const classroomsData = {
         dueDate: "2025-03-29T23:59:00",
         status: "active",
         points: 50,
-        description: "Write a detailed report on the photosynthesis experiment we conducted in class.",
+        description:
+          "Write a detailed report on the photosynthesis experiment we conducted in class.",
         submissions: 12,
       },
       {
@@ -252,7 +283,8 @@ const classroomsData = {
         dueDate: "2025-04-05T10:00:00",
         status: "active",
         points: 75,
-        description: "Covers chemical reactions, balancing equations, and molecular structures.",
+        description:
+          "Covers chemical reactions, balancing equations, and molecular structures.",
         submissions: 0,
       },
       {
@@ -262,7 +294,8 @@ const classroomsData = {
         dueDate: "2025-03-20T23:59:00",
         status: "completed",
         points: 40,
-        description: "Problems on Newton's laws of motion and gravitational force.",
+        description:
+          "Problems on Newton's laws of motion and gravitational force.",
         submissions: 18,
       },
     ],
@@ -335,143 +368,106 @@ const classroomsData = {
       },
     ],
   },
-}
+};
 
 export default function ClassroomManagement() {
-  const params = useParams()
-  const classroomId = params.id
-  const classroom = classroomsData[classroomId]
+  const params = useParams();
+  const classroomId = params.id;
+  const classroom = classroomsData[classroomId];
 
-  const [searchQuery, setSearchQuery] = useState("")
-  const [announcementTitle, setAnnouncementTitle] = useState("")
-  const [announcementContent, setAnnouncementContent] = useState("")
-  const [assignmentTitle, setAssignmentTitle] = useState("")
-  const [assignmentType, setAssignmentType] = useState("")
-  const [isCreating, setIsCreating] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [announcementTitle, setAnnouncementTitle] = useState("");
+  const [announcementContent, setAnnouncementContent] = useState("");
+  const [assignmentTitle, setAssignmentTitle] = useState("");
+  const [assignmentType, setAssignmentType] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
 
   // Format date for display
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
-    })
-  }
+    });
+  };
 
   // Format datetime for display
   const formatDateTime = (dateString) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
       hour: "numeric",
       minute: "2-digit",
-    })
-  }
+    });
+  };
 
   // Filter students based on search query
   const filteredStudents =
     classroom?.studentList.filter(
       (student) =>
         student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.email.toLowerCase().includes(searchQuery.toLowerCase()),
-    ) || []
+        student.email.toLowerCase().includes(searchQuery.toLowerCase())
+    ) || [];
 
   const handleCreateAnnouncement = () => {
-    setIsCreating(true)
+    setIsCreating(true);
     // Simulate API call
     setTimeout(() => {
-      setIsCreating(false)
-      setAnnouncementTitle("")
-      setAnnouncementContent("")
+      setIsCreating(false);
+      setAnnouncementTitle("");
+      setAnnouncementContent("");
       // In a real app, you would add the new announcement to the list
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   const handleCreateAssignment = () => {
-    setIsCreating(true)
+    setIsCreating(true);
     // Simulate API call
     setTimeout(() => {
-      setIsCreating(false)
-      setAssignmentTitle("")
-      setAssignmentType("")
+      setIsCreating(false);
+      setAssignmentTitle("");
+      setAssignmentType("");
       // In a real app, you would add the new assignment to the list
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   if (!classroom) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">Classroom not found</h1>
         <Button asChild className="mt-4">
-          <Link href="/teacher/classes">Back to Classes</Link>
+          <Link to="/teacher/classes">Back to Classes</Link>
         </Button>
       </div>
-    )
+    );
   }
 
   return (
     <div className="flex min-h-screen flex-col relative">
       <ThreeBackground />
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex lg:w-[250px] py-6">
-          <nav className="grid items-start gap-2">
-            <Link href="/teacher/dashboard">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <User className="h-4 w-4" />
-                Dashboard
-              </Button>
-            </Link>
-            <Link href="/teacher/classes">
-              <Button variant="secondary" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Classes
-              </Button>
-            </Link>
-            <Link href="/teacher/quizzes">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <BookOpen className="h-4 w-4" />
-                Test Quizzes
-              </Button>
-            </Link>
-            <Link href="/teacher/podcasts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <MessageSquare className="h-4 w-4" />
-                AI Podcasts
-              </Button>
-            </Link>
-            <Link href="/teacher/calendar">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Calendar className="h-4 w-4" />
-                Calendar
-              </Button>
-            </Link>
-            <Link href="/teacher/settings">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LogOut className="h-4 w-4" />
-                Logout
-              </Button>
-            </Link>
-          </nav>
-        </aside>
+      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr] realtive z-10">
+        <TeacherSidebar />
         <main className="flex flex-col gap-6 py-6">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" asChild className="hover:bg-primary/10">
-                <Link href="/teacher/classes">
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:bg-primary/10"
+              >
+                <Link to="/teacher/classes">
                   <ArrowLeft className="h-4 w-4" />
                 </Link>
               </Button>
               <h1 className="text-3xl font-bold">{classroom.name}</h1>
-              <Badge variant="outline" className="bg-primary/10 border-primary/20">
+              <Badge
+                variant="outline"
+                className="bg-primary/10 border-primary/20"
+              >
                 {classroom.subject}
               </Badge>
             </div>
@@ -481,13 +477,19 @@ export default function ClassroomManagement() {
               <CardContent className="p-4 relative">
                 <div className="flex items-center gap-4">
                   <Avatar className="h-16 w-16 border-2 border-primary/20">
-                    <AvatarFallback className={`${classroom.color} text-lg`}>{classroom.avatar}</AvatarFallback>
+                    <AvatarFallback className={`${classroom.color} text-lg`}>
+                      {classroom.avatar}
+                    </AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h2 className="text-xl font-semibold">{classroom.name}</h2>
-                        <p className="text-sm text-muted-foreground">{classroom.description}</p>
+                        <h2 className="text-xl font-semibold">
+                          {classroom.name}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">
+                          {classroom.description}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2">
                         <Button variant="outline" className="gap-1">
@@ -503,20 +505,31 @@ export default function ClassroomManagement() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>Archive Class</DropdownMenuItem>
                             <DropdownMenuItem>Export Data</DropdownMenuItem>
-                            <DropdownMenuItem className="text-destructive">Delete Class</DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive">
+                              Delete Class
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                      <Badge
+                        variant="outline"
+                        className="bg-primary/10 border-primary/20"
+                      >
                         <Users className="h-3 w-3 mr-1" />
                         {classroom.students} students
                       </Badge>
-                      <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                      <Badge
+                        variant="outline"
+                        className="bg-primary/10 border-primary/20"
+                      >
                         Code: {classroom.code}
                       </Badge>
-                      <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                      <Badge
+                        variant="outline"
+                        className="bg-primary/10 border-primary/20"
+                      >
                         Created: {formatDate(classroom.createdAt)}
                       </Badge>
                     </div>
@@ -577,7 +590,9 @@ export default function ClassroomManagement() {
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                     <DialogHeader className="relative">
                       <DialogTitle>Add Student</DialogTitle>
-                      <DialogDescription>Add a new student to this class.</DialogDescription>
+                      <DialogDescription>
+                        Add a new student to this class.
+                      </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4 relative">
                       <div className="grid gap-2">
@@ -625,7 +640,9 @@ export default function ClassroomManagement() {
                           <TableCell className="font-medium">
                             <div className="flex items-center gap-2">
                               <Avatar className="h-8 w-8">
-                                <AvatarFallback>{student.avatar}</AvatarFallback>
+                                <AvatarFallback>
+                                  {student.avatar}
+                                </AvatarFallback>
                               </Avatar>
                               <span>{student.name}</span>
                             </div>
@@ -641,8 +658,8 @@ export default function ClassroomManagement() {
                                 student.grade.startsWith("A")
                                   ? "bg-green-500/20 text-green-500 border-green-500/20"
                                   : student.grade.startsWith("B")
-                                    ? "bg-blue-500/20 text-blue-500 border-blue-500/20"
-                                    : "bg-amber-500/20 text-amber-500 border-amber-500/20"
+                                  ? "bg-blue-500/20 text-blue-500 border-blue-500/20"
+                                  : "bg-amber-500/20 text-amber-500 border-amber-500/20"
                               }
                             `}
                             >
@@ -657,10 +674,16 @@ export default function ClassroomManagement() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem>View Details</DropdownMenuItem>
-                                <DropdownMenuItem>Message Student</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  View Details
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Message Student
+                                </DropdownMenuItem>
                                 <DropdownMenuItem>Edit Grade</DropdownMenuItem>
-                                <DropdownMenuItem className="text-destructive">Remove from Class</DropdownMenuItem>
+                                <DropdownMenuItem className="text-destructive">
+                                  Remove from Class
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </TableCell>
@@ -686,7 +709,9 @@ export default function ClassroomManagement() {
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                     <DialogHeader className="relative">
                       <DialogTitle>Create Assignment</DialogTitle>
-                      <DialogDescription>Create a new assignment or test for your class.</DialogDescription>
+                      <DialogDescription>
+                        Create a new assignment or test for your class.
+                      </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4 relative">
                       <div className="grid gap-2">
@@ -701,7 +726,10 @@ export default function ClassroomManagement() {
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="assignmentType">Type</Label>
-                        <Select value={assignmentType} onValueChange={setAssignmentType}>
+                        <Select
+                          value={assignmentType}
+                          onValueChange={setAssignmentType}
+                        >
                           <SelectTrigger
                             id="assignmentType"
                             className="border-primary/20 focus-visible:ring-primary/30"
@@ -709,13 +737,17 @@ export default function ClassroomManagement() {
                             <SelectValue placeholder="Select type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="assignment">Assignment</SelectItem>
+                            <SelectItem value="assignment">
+                              Assignment
+                            </SelectItem>
                             <SelectItem value="test">Test/Quiz</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                       <div className="grid gap-2">
-                        <Label htmlFor="assignmentDescription">Description</Label>
+                        <Label htmlFor="assignmentDescription">
+                          Description
+                        </Label>
                         <Textarea
                           id="assignmentDescription"
                           placeholder="Enter assignment description"
@@ -725,11 +757,19 @@ export default function ClassroomManagement() {
                       <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">
                           <Label htmlFor="dueDate">Due Date</Label>
-                          <Input id="dueDate" type="date" className="border-primary/20 focus-visible:ring-primary/30" />
+                          <Input
+                            id="dueDate"
+                            type="date"
+                            className="border-primary/20 focus-visible:ring-primary/30"
+                          />
                         </div>
                         <div className="grid gap-2">
                           <Label htmlFor="dueTime">Due Time</Label>
-                          <Input id="dueTime" type="time" className="border-primary/20 focus-visible:ring-primary/30" />
+                          <Input
+                            id="dueTime"
+                            type="time"
+                            className="border-primary/20 focus-visible:ring-primary/30"
+                          />
                         </div>
                       </div>
                       <div className="grid gap-2">
@@ -745,7 +785,11 @@ export default function ClassroomManagement() {
                     <DialogFooter className="relative">
                       <Button
                         onClick={handleCreateAssignment}
-                        disabled={!assignmentTitle.trim() || !assignmentType || isCreating}
+                        disabled={
+                          !assignmentTitle.trim() ||
+                          !assignmentType ||
+                          isCreating
+                        }
                         className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
                         {isCreating ? "Creating..." : "Create Assignment"}
@@ -775,7 +819,11 @@ export default function ClassroomManagement() {
                           <div
                             className={`
                               rounded-full p-2 mt-0.5
-                              ${assignment.type === "test" ? "bg-blue-500/20 text-blue-500" : "bg-amber-500/20 text-amber-500"}
+                              ${
+                                assignment.type === "test"
+                                  ? "bg-blue-500/20 text-blue-500"
+                                  : "bg-amber-500/20 text-amber-500"
+                              }
                             `}
                           >
                             {assignment.type === "test" ? (
@@ -786,28 +834,45 @@ export default function ClassroomManagement() {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
-                              <h3 className="font-medium">{assignment.title}</h3>
-                              <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                              <h3 className="font-medium">
+                                {assignment.title}
+                              </h3>
+                              <Badge
+                                variant="outline"
+                                className="bg-primary/10 border-primary/20"
+                              >
                                 {assignment.points} pts
                               </Badge>
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">{assignment.description}</p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {assignment.description}
+                            </p>
                             <div className="flex items-center justify-between mt-2">
                               <div className="flex items-center gap-2">
                                 <Badge
                                   variant="outline"
                                   className={`
-                                  ${assignment.type === "test" ? "bg-blue-500/10 text-blue-500 border-blue-500/20" : "bg-amber-500/10 text-amber-500 border-amber-500/20"}
+                                  ${
+                                    assignment.type === "test"
+                                      ? "bg-blue-500/10 text-blue-500 border-blue-500/20"
+                                      : "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                                  }
                                 `}
                                 >
-                                  {assignment.type === "test" ? "Test" : "Assignment"}
+                                  {assignment.type === "test"
+                                    ? "Test"
+                                    : "Assignment"}
                                 </Badge>
                                 <span className="text-sm text-muted-foreground">
                                   Due: {formatDateTime(assignment.dueDate)}
                                 </span>
                               </div>
-                              <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20">
-                                {assignment.submissions}/{classroom.students} submissions
+                              <Badge
+                                variant="outline"
+                                className="bg-green-500/10 text-green-500 border-green-500/20"
+                              >
+                                {assignment.submissions}/{classroom.students}{" "}
+                                submissions
                               </Badge>
                             </div>
                           </div>
@@ -818,10 +883,18 @@ export default function ClassroomManagement() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem>View Submissions</DropdownMenuItem>
-                              <DropdownMenuItem>Edit Assignment</DropdownMenuItem>
-                              <DropdownMenuItem>Extend Deadline</DropdownMenuItem>
-                              <DropdownMenuItem className="text-destructive">Delete Assignment</DropdownMenuItem>
+                              <DropdownMenuItem>
+                                View Submissions
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Edit Assignment
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Extend Deadline
+                              </DropdownMenuItem>
+                              <DropdownMenuItem className="text-destructive">
+                                Delete Assignment
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
@@ -850,7 +923,11 @@ export default function ClassroomManagement() {
                           <div
                             className={`
                               rounded-full p-2 mt-0.5
-                              ${assignment.type === "test" ? "bg-blue-500/20 text-blue-500" : "bg-amber-500/20 text-amber-500"}
+                              ${
+                                assignment.type === "test"
+                                  ? "bg-blue-500/20 text-blue-500"
+                                  : "bg-amber-500/20 text-amber-500"
+                              }
                             `}
                           >
                             {assignment.type === "test" ? (
@@ -861,28 +938,46 @@ export default function ClassroomManagement() {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
-                              <h3 className="font-medium">{assignment.title}</h3>
-                              <Badge variant="outline" className="bg-primary/10 border-primary/20">
+                              <h3 className="font-medium">
+                                {assignment.title}
+                              </h3>
+                              <Badge
+                                variant="outline"
+                                className="bg-primary/10 border-primary/20"
+                              >
                                 {assignment.points} pts
                               </Badge>
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">{assignment.description}</p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {assignment.description}
+                            </p>
                             <div className="flex items-center justify-between mt-2">
                               <div className="flex items-center gap-2">
                                 <Badge
                                   variant="outline"
                                   className={`
-                                  ${assignment.type === "test" ? "bg-blue-500/10 text-blue-500 border-blue-500/20" : "bg-amber-500/10 text-amber-500 border-amber-500/20"}
+                                  ${
+                                    assignment.type === "test"
+                                      ? "bg-blue-500/10 text-blue-500 border-blue-500/20"
+                                      : "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                                  }
                                 `}
                                 >
-                                  {assignment.type === "test" ? "Test" : "Assignment"}
+                                  {assignment.type === "test"
+                                    ? "Test"
+                                    : "Assignment"}
                                 </Badge>
                                 <span className="text-sm text-muted-foreground">
-                                  Completed: {formatDateTime(assignment.dueDate)}
+                                  Completed:{" "}
+                                  {formatDateTime(assignment.dueDate)}
                                 </span>
                               </div>
-                              <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20">
-                                {assignment.submissions}/{classroom.students} submissions
+                              <Badge
+                                variant="outline"
+                                className="bg-green-500/10 text-green-500 border-green-500/20"
+                              >
+                                {assignment.submissions}/{classroom.students}{" "}
+                                submissions
                               </Badge>
                             </div>
                           </div>
@@ -893,10 +988,18 @@ export default function ClassroomManagement() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem>View Submissions</DropdownMenuItem>
-                              <DropdownMenuItem>Download Results</DropdownMenuItem>
-                              <DropdownMenuItem>Reopen Assignment</DropdownMenuItem>
-                              <DropdownMenuItem>Archive Assignment</DropdownMenuItem>
+                              <DropdownMenuItem>
+                                View Submissions
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Download Results
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Reopen Assignment
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                Archive Assignment
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
@@ -920,7 +1023,9 @@ export default function ClassroomManagement() {
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                     <DialogHeader className="relative">
                       <DialogTitle>Create Announcement</DialogTitle>
-                      <DialogDescription>Create a new announcement for your class.</DialogDescription>
+                      <DialogDescription>
+                        Create a new announcement for your class.
+                      </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4 relative">
                       <div className="grid gap-2">
@@ -939,19 +1044,31 @@ export default function ClassroomManagement() {
                           id="announcementContent"
                           placeholder="Enter announcement content"
                           value={announcementContent}
-                          onChange={(e) => setAnnouncementContent(e.target.value)}
+                          onChange={(e) =>
+                            setAnnouncementContent(e.target.value)
+                          }
                           className="min-h-[150px] border-primary/20 focus-visible:ring-primary/30"
                         />
                       </div>
                       <div className="flex items-center space-x-2">
-                        <input type="checkbox" id="sendEmail" className="rounded border-primary/20" />
-                        <Label htmlFor="sendEmail">Send email notification to students</Label>
+                        <input
+                          type="checkbox"
+                          id="sendEmail"
+                          className="rounded border-primary/20"
+                        />
+                        <Label htmlFor="sendEmail">
+                          Send email notification to students
+                        </Label>
                       </div>
                     </div>
                     <DialogFooter className="relative">
                       <Button
                         onClick={handleCreateAnnouncement}
-                        disabled={!announcementTitle.trim() || !announcementContent.trim() || isCreating}
+                        disabled={
+                          !announcementTitle.trim() ||
+                          !announcementContent.trim() ||
+                          isCreating
+                        }
                         className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white border-0"
                       >
                         {isCreating ? "Creating..." : "Post Announcement"}
@@ -986,9 +1103,13 @@ export default function ClassroomManagement() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Edit Announcement</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Edit Announcement
+                                </DropdownMenuItem>
                                 <DropdownMenuItem>Pin to Top</DropdownMenuItem>
-                                <DropdownMenuItem className="text-destructive">Delete Announcement</DropdownMenuItem>
+                                <DropdownMenuItem className="text-destructive">
+                                  Delete Announcement
+                                </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </div>
@@ -1015,7 +1136,9 @@ export default function ClassroomManagement() {
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-pink-500/10 rounded-lg pointer-events-none"></div>
                     <DialogHeader className="relative">
                       <DialogTitle>Upload Material</DialogTitle>
-                      <DialogDescription>Upload a new document or video for your class.</DialogDescription>
+                      <DialogDescription>
+                        Upload a new document or video for your class.
+                      </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4 relative">
                       <div className="grid gap-2">
@@ -1029,7 +1152,10 @@ export default function ClassroomManagement() {
                       <div className="grid gap-2">
                         <Label htmlFor="materialType">Type</Label>
                         <Select>
-                          <SelectTrigger id="materialType" className="border-primary/20 focus-visible:ring-primary/30">
+                          <SelectTrigger
+                            id="materialType"
+                            className="border-primary/20 focus-visible:ring-primary/30"
+                          >
                             <SelectValue placeholder="Select type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -1047,11 +1173,15 @@ export default function ClassroomManagement() {
                           <p className="text-sm text-muted-foreground">
                             Drag and drop your file here, or click to browse
                           </p>
-                          <p className="text-xs text-muted-foreground mt-1">Supports PDF, DOCX, MP4, MP3 (max 100MB)</p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Supports PDF, DOCX, MP4, MP3 (max 100MB)
+                          </p>
                         </div>
                       </div>
                       <div className="grid gap-2">
-                        <Label htmlFor="materialDescription">Description (Optional)</Label>
+                        <Label htmlFor="materialDescription">
+                          Description (Optional)
+                        </Label>
                         <Textarea
                           id="materialDescription"
                           placeholder="Enter a brief description"
@@ -1081,7 +1211,11 @@ export default function ClassroomManagement() {
                           <div
                             className={`
                               rounded-full p-2
-                              ${material.type === "document" ? "bg-blue-500/20 text-blue-500" : "bg-purple-500/20 text-purple-500"}
+                              ${
+                                material.type === "document"
+                                  ? "bg-blue-500/20 text-blue-500"
+                                  : "bg-purple-500/20 text-purple-500"
+                              }
                             `}
                           >
                             {material.type === "document" ? (
@@ -1094,8 +1228,12 @@ export default function ClassroomManagement() {
                             <h3 className="font-medium">{material.title}</h3>
                             <p className="text-xs text-muted-foreground">
                               {material.type === "document"
-                                ? `${material.size} • Uploaded ${formatDate(material.uploadedDate)}`
-                                : `${material.duration} • Uploaded ${formatDate(material.uploadedDate)}`}
+                                ? `${material.size} • Uploaded ${formatDate(
+                                    material.uploadedDate
+                                  )}`
+                                : `${material.duration} • Uploaded ${formatDate(
+                                    material.uploadedDate
+                                  )}`}
                             </p>
                           </div>
                         </div>
@@ -1113,7 +1251,9 @@ export default function ClassroomManagement() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>Edit Details</DropdownMenuItem>
                               <DropdownMenuItem>Share Link</DropdownMenuItem>
-                              <DropdownMenuItem className="text-destructive">Delete Material</DropdownMenuItem>
+                              <DropdownMenuItem className="text-destructive">
+                                Delete Material
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
@@ -1127,5 +1267,5 @@ export default function ClassroomManagement() {
         </main>
       </div>
     </div>
-  )
+  );
 }

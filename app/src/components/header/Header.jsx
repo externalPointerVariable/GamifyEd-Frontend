@@ -1,11 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Bell, MessageSquare } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const user = useSelector((state) => state.auth.user);
+  const handleNavigation = () => {
+    const navigate = useNavigate();
+    if (user.role === "student") {
+      navigate("student/dashboard");
+    }
+    if (user.role === "teacher") {
+      navigate("teacher/dashboard");
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-gray-900 backdrop-blur-md dark:bg-black">
@@ -32,7 +41,7 @@ export default function Header() {
         {/* Right-side Controls */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          {!user ? (
+          {!user.role ? (
             <>
               <Link
                 to="/login"
@@ -60,6 +69,7 @@ export default function Header() {
                   src="/placeholder.svg?height=40&width=40"
                   alt="User Avatar"
                   className="w-full h-full object-cover"
+                  onClick={handleNavigation}
                 />
               </div>
             </>

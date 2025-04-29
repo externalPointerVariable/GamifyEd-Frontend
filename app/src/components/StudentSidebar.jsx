@@ -12,7 +12,7 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { setUser } from "../features/authSlice";
+import { clearUser } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 // Custom hook for logout functionality
@@ -21,7 +21,7 @@ function useLogout() {
   const navigate = useNavigate();
 
   return () => {
-    dispatch(setUser({}));
+    dispatch(clearUser());
     navigate("/login");
   };
 }

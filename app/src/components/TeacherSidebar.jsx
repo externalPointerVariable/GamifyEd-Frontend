@@ -11,7 +11,7 @@ import {
 import { Button } from "../components/ui/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/authSlice";
+import { clearUser } from "../features/authSlice";
 
 // Custom hook for logout functionality.
 function useLogout() {
@@ -19,7 +19,7 @@ function useLogout() {
   const navigate = useNavigate();
 
   return () => {
-    dispatch(setUser({}));
+    dispatch(clearUser());
     navigate("/login");
   };
 }

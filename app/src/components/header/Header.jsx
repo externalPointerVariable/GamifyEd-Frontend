@@ -3,16 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Bell, MessageSquare } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
 
 export default function Header() {
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+
   const handleNavigation = () => {
-    const navigate = useNavigate();
     if (user.role === "student") {
-      navigate("student/dashboard");
-    }
-    if (user.role === "teacher") {
-      navigate("teacher/dashboard");
+      navigate("/student/dashboard");
+    } else if (user.role === "teacher") {
+      navigate("/teacher/dashboard");
     }
   };
 
@@ -41,7 +43,7 @@ export default function Header() {
           <span className="text-gray-100">GamifyEd-AI</span>
         </Link>
 
-        {/* Right-side Controls */}
+        {/* Navigation / Actions */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
           {!user ? (
@@ -61,19 +63,22 @@ export default function Header() {
             </>
           ) : (
             <>
-              <button className="p-2 rounded-full hover:bg-gray-700 transition">
-                <Bell className="h-5 w-5 text-gray-300 hover:text-white" />
-              </button>
-              <button className="p-2 rounded-full hover:bg-gray-700 transition">
-                <MessageSquare className="h-5 w-5 text-gray-300 hover:text-white" />
-              </button>
-              <div className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-gray-400">
-                <img
-                  src="/placeholder.svg?height=40&width=40"
-                  alt="User Avatar"
-                  className="w-full h-full object-cover"
-                  onClick={handleNavigation}
-                />
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
+                <Button variant="ghost" size="icon">
+                  <Bell className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <MessageSquare className="h-5 w-5" />
+                </Button>
+                <Avatar>
+                  <AvatarImage
+                    src="/placeholder.svg?height=40&width=40"
+                    alt="Teacher"
+                    onClick={handleNavigation}
+                  />
+                  <AvatarFallback>TD</AvatarFallback>
+                </Avatar>
               </div>
             </>
           )}

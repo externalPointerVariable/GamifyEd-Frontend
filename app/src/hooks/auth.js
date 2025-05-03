@@ -73,4 +73,4 @@ const loginUser = async ({ username, password }) => {
 
 const getUser = () => {};
 
-export { registerUser, loginUser };
+export { registerUser, loginUser, getUser };

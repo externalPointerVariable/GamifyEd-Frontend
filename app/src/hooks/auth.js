@@ -1,4 +1,5 @@
 import config from "../config/config";
+import { useSelector, useDispatch } from "react-redux";
 
 const registerUser = async ({
   username,
@@ -6,8 +7,8 @@ const registerUser = async ({
   lastName,
   email,
   password,
-  userType, // this will be mapped to `role`
-  institute, // this will be mapped to `institution`
+  userType,
+  institute,
 }) => {
   try {
     const response = await fetch(`${config.backendEndpoint}/register/`, {
@@ -70,6 +71,6 @@ const loginUser = async ({ username, password }) => {
   }
 };
 
-// const resetUserPassword
+const getUser = () => {};
 
 export { registerUser, loginUser };

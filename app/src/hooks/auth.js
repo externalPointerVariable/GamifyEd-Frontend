@@ -42,6 +42,10 @@ const registerUser = async ({
 export default registerUser;
 
 const loginUser = async ({ username, password }) => {
+  document.cookie = JSON.stringify({
+    username,
+    password,
+  });
   try {
     const response = await fetch(`${config.backendEndpoint}/login/`, {
       method: "POST",
@@ -55,7 +59,8 @@ const loginUser = async ({ username, password }) => {
     });
 
     const data = await response.json();
-
+    console.log("Cookies: ", document.cookie);
+    
     if (!response.ok) {
       throw new Error(data.message || "Login failed");
     }

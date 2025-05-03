@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   const user = useSelector((state) => state.auth.user);
+  
   const navigate = useNavigate();
 
   const handleNavigation = () => {
@@ -64,12 +65,11 @@ export default function Header() {
           ) : (
             <>
               <div className="flex items-center gap-4">
-                <ThemeToggle />
                 <Button variant="ghost" size="icon">
-                  <Bell className="h-5 w-5" />
+                  <Bell className="h-5 w-5 text-white hover:text-indigo-300 dark:hover:text-indigo-400" />
                 </Button>
                 <Button variant="ghost" size="icon">
-                  <MessageSquare className="h-5 w-5" />
+                  <MessageSquare className="h-5 w-5 text-white hover:text-indigo-300 dark:hover:text-indigo-400" />
                 </Button>
                 <Avatar>
                   <AvatarImage

@@ -1,4 +1,5 @@
 import config from "../config/config";
+import { useSelector, useDispatch } from "react-redux";
 
 const registerUser = async ({
   username,
@@ -6,8 +7,8 @@ const registerUser = async ({
   lastName,
   email,
   password,
-  userType, // this will be mapped to `role`
-  institute, // this will be mapped to `institution`
+  userType,
+  institute,
 }) => {
   try {
     const response = await fetch(`${config.backendEndpoint}/register/`, {
@@ -42,6 +43,10 @@ const registerUser = async ({
 export default registerUser;
 
 const loginUser = async ({ username, password }) => {
+  document.cookie = `user=${encodeURIComponent(
+    JSON.stringify({ username, password })
+  )}; path=/;`;
+
   try {
     const response = await fetch(`${config.backendEndpoint}/login/`, {
       method: "POST",
@@ -55,7 +60,6 @@ const loginUser = async ({ username, password }) => {
     });
 
     const data = await response.json();
-
     if (!response.ok) {
       throw new Error(data.message || "Login failed");
     }
@@ -67,6 +71,6 @@ const loginUser = async ({ username, password }) => {
   }
 };
 
-// const resetUserPassword
+const getUser = () => {};
 
-export { registerUser, loginUser };
+export { registerUser, loginUser, getUser };

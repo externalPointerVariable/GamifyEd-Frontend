@@ -59,8 +59,6 @@ const loginUser = async ({ username, password }) => {
     });
 
     const data = await response.json();
-    console.log("Cookies: ", document.cookie);
-
     if (!response.ok) {
       throw new Error(data.message || "Login failed");
     }

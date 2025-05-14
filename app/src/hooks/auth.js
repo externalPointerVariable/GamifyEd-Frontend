@@ -22,8 +22,8 @@ const registerUser = async ({
         lastName,
         email,
         password,
-        role: userType, // backend expects 'role'
-        institution: institute, // backend expects 'institution'
+        role: userType,
+        institution: institute,
       }),
     });
 

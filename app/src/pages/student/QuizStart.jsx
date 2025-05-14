@@ -59,6 +59,7 @@ const QuizStart = () => {
           numQuestions
         );
         const data = JSON.parse(response);
+        
 
         if (Array.isArray(data)) {
           setQuiz(data);

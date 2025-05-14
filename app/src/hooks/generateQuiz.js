@@ -30,7 +30,7 @@ const generateStudentQuiz = async (
       throw new Error(`Failed to fetch quiz: ${errorText}`);
     }
 
-    const data = await response.text(); // or .json() if response is JSON
+    const data = await response.text();
     return data;
   } catch (error) {
     console.error("Error generating quiz:", error);

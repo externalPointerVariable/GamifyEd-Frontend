@@ -74,9 +74,12 @@ const getStudentDailyMissions = async () => {
   }
 };
 
+const setStudentDailyMissions = async () => {};
+
 export {
   getStudentPodcast,
   setStudentPodcast,
   getStudentPodcastCluster,
   getStudentDailyMissions,
+  setStudentDailyMissions,
 };

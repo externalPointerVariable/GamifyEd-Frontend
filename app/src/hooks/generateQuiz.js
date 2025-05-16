@@ -10,12 +10,12 @@ const generateStudentQuiz = async (
   myHeaders.append("topics", JSON.stringify(topics));
   myHeaders.append("numberOfQuestions", numberOfQuestions.toString());
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Cookie", "csrftoken=JLcr9XsggpD9stL9XQFQCPdrEWnL8Dps"); // Update this if needed
+  myHeaders.append("Cookie", "csrftoken=JLcr9XsggpD9stL9XQFQCPdrEWnL8Dps"); 
 
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: "", // Required by backend
+    body: "",
     redirect: "follow",
   };
 

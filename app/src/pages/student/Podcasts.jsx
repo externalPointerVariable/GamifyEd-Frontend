@@ -13,10 +13,10 @@ import { Label } from "../../components/ui/Label";
 import { Pause, Play } from "lucide-react";
 import { Slider } from "../../components/ui/Slider";
 import StudentSidebar from "../../components/StudentSidebar";
+import generatePodcast from "../../hooks/generatePodcast";
 
 export default function StudentPodcasts() {
   const [topic, setTopic] = useState("");
-  const [duration, setDuration] = useState(10);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPodcast, setGeneratedPodcast] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,16 +24,8 @@ export default function StudentPodcasts() {
   const handleGeneratePodcast = async () => {
     setIsGenerating(true);
     try {
-      // In a real implementation, this would use the AI SDK to generate a podcast
-      // For demo purposes, we'll simulate a response
-      setTimeout(() => {
-        setGeneratedPodcast({
-          title: `Podcast on ${topic}`,
-          duration: `${duration} minutes`,
-          description: `This AI-generated podcast covers key concepts about ${topic} in an engaging and informative way.`,
-        });
-        setIsGenerating(false);
-      }, 2000);
+      const response  = await generatePodcast();
+      setTopic(response.name);
     } catch (error) {
       console.error("Error generating podcast:", error);
       setIsGenerating(false);
@@ -93,14 +85,6 @@ export default function StudentPodcasts() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="rounded-lg bg-muted p-4 flex items-center justify-center h-40">
-                    <div className="text-center">
-                      <div className="text-4xl mb-2">🎙️</div>
-                      <p className="text-muted-foreground">
-                        Duration: {generatedPodcast.duration}
-                      </p>
-                    </div>
-                  </div>
                   <div className="space-y-4">
                     <div className="flex items-center justify-center gap-4">
                       <Button

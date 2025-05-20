@@ -1,6 +1,6 @@
 import config from "../config/config";
 
-const generatePodcast = async (topic = "Quantum Computing") => {
+const generatePodcast = async (topic) => {
     const myHeaders = new Headers();
     myHeaders.append("topic", topic);
     myHeaders.append("Content-Type", "application/json");
@@ -24,8 +24,8 @@ const generatePodcast = async (topic = "Quantum Computing") => {
         const errorText = await response.text();
         throw new Error(`Failed to fetch podcast: ${errorText}`);
         }
-        console.log("Podcast response:", response);
-        return response;
+        const data  = await response.json();
+        return data;
     } catch (error) {
         console.error("Error generating podcast:", error);
         throw error;

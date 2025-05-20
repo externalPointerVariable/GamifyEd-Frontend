@@ -95,9 +95,8 @@ export default function StudentPodcasts() {
                 <CardHeader>
                   {/* Using "name" instead of "title" */}
                   <CardTitle>{generatedPodcast.name}</CardTitle>
-                  {/* Displaying the first 150 characters of content as a description */}
                   <CardDescription>
-                    {generatedPodcast.content.slice(0, 150)}...
+                    {generatedPodcast.content.slice(0,-20)}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -139,7 +138,6 @@ export default function StudentPodcasts() {
                   </Button>
                 </CardFooter>
               </Card>
-              {/* Hidden audio element used for playback control */}
               {generatedPodcast && (
                 <audio
                   ref={audioRef}

@@ -24,8 +24,7 @@ const generatePodcast = async (topic) => {
         const errorText = await response.text();
         throw new Error(`Failed to fetch podcast: ${errorText}`);
         }
-        const data  = await response.json();
-        return data;
+        return response;
     } catch (error) {
         console.error("Error generating podcast:", error);
         throw error;

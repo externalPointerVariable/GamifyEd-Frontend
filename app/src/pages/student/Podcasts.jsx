@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "../../components/ui/Button";
 import {
   Card,
@@ -11,7 +11,6 @@ import {
 import { Input } from "../../components/ui/Input";
 import { Label } from "../../components/ui/Label";
 import { Pause, Play } from "lucide-react";
-import { Slider } from "../../components/ui/Slider";
 import StudentSidebar from "../../components/StudentSidebar";
 import generatePodcast from "../../hooks/generatePodcast";
 
@@ -20,17 +19,33 @@ export default function StudentPodcasts() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPodcast, setGeneratedPodcast] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [duration, setDuration] = useState(0);
+
+  const audioRef = useRef(null);
 
   const handleGeneratePodcast = async () => {
     setIsGenerating(true);
     try {
-      const response  = await generatePodcast();
-      setTopic(response.name);
+      // Pass the topic to the hook if needed
+      const response = await generatePodcast(topic);
+      const data = await response.json();
+      if (data && data.length > 0) {
+        // The API returns an array; we extract the first podcast.
+        setGeneratedPodcast(data[0]);
+      }
     } catch (error) {
       console.error("Error generating podcast:", error);
+    } finally {
       setIsGenerating(false);
     }
   };
+
+  // When a podcast is generated, control audio play/pause based on isPlaying.
+  useEffect(() => {
+    if (generatedPodcast && audioRef.current) {
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    }
+  }, [isPlaying, generatedPodcast]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -63,7 +78,6 @@ export default function StudentPodcasts() {
                     onChange={(e) => setTopic(e.target.value)}
                   />
                 </div>
-                <div className="space-y-2"></div>
               </CardContent>
               <CardFooter>
                 <Button
@@ -79,9 +93,11 @@ export default function StudentPodcasts() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>{generatedPodcast.title}</CardTitle>
+                  {/* Using "name" instead of "title" */}
+                  <CardTitle>{generatedPodcast.name}</CardTitle>
+                  {/* Displaying the first 150 characters of content as a description */}
                   <CardDescription>
-                    {generatedPodcast.description}
+                    {generatedPodcast.content.slice(0, 150)}...
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -91,7 +107,7 @@ export default function StudentPodcasts() {
                         variant="outline"
                         size="icon"
                         className="h-10 w-10 rounded-full"
-                        onClick={() => setIsPlaying(!isPlaying)}
+                        onClick={() => setIsPlaying((prev) => !prev)}
                       >
                         {isPlaying ? (
                           <Pause className="h-4 w-4" />
@@ -100,25 +116,37 @@ export default function StudentPodcasts() {
                         )}
                       </Button>
                     </div>
-                    <div className="space-y-2">
-                      <Slider defaultValue={[0]} max={100} step={1} />
-                      <div className="flex justify-between text-xs text-muted-foreground">
-                        <span>0:00</span>
-                        <span>{generatedPodcast.duration}</span>
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
                 <CardFooter className="flex justify-between">
                   <Button
                     variant="outline"
-                    onClick={() => setGeneratedPodcast(null)}
+                    onClick={() => {
+                      setGeneratedPodcast(null);
+                      setIsPlaying(false);
+                      setDuration(0);
+                    }}
                   >
                     Generate Another Podcast
                   </Button>
-                  <Button>Download Audio</Button>
+                  <Button
+                    as="a"
+                    variant="default"
+                    href={generatedPodcast.podcasturl}
+                    download
+                  >
+                    Download Audio
+                  </Button>
                 </CardFooter>
               </Card>
+              {/* Hidden audio element used for playback control */}
+              {generatedPodcast && (
+                <audio
+                  ref={audioRef}
+                  src={generatedPodcast.podcasturl}
+                  onLoadedMetadata={(e) => setDuration(e.target.duration)}
+                />
+              )}
             </div>
           )}
         </main>

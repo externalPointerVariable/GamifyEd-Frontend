@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/Card";
+import Markdown from "react-markdown";
 import { Input } from "../../components/ui/Input";
 import { Label } from "../../components/ui/Label";
 import { Pause, Play } from "lucide-react";
@@ -96,7 +97,7 @@ export default function StudentPodcasts() {
                   {/* Using "name" instead of "title" */}
                   <CardTitle>{generatedPodcast.name}</CardTitle>
                   <CardDescription>
-                    {generatedPodcast.content.slice(0,-20)}
+                    <Markdown>{generatedPodcast.content.slice(0, -20)}</Markdown>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
